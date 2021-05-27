@@ -1,0 +1,15 @@
+C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.Data\bin\Debug\net5.0\MComics.Data.deps.json
+C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.Data\bin\Debug\net5.0\MComics.Data.dll
+C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.Data\bin\Debug\net5.0\ref\MComics.Data.dll
+C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.Data\bin\Debug\net5.0\MComics.Data.pdb
+C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.Data\obj\Debug\net5.0\MComics.Data.csprojAssemblyReference.cache
+C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.Data\obj\Debug\net5.0\MComics.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.Data\obj\Debug\net5.0\MComics.Data.AssemblyInfoInputs.cache
+C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.Data\obj\Debug\net5.0\MComics.Data.AssemblyInfo.cs
+C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.Data\obj\Debug\net5.0\MComics.Data.csproj.CoreCompileInputs.cache
+C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.Data\obj\Debug\net5.0\MComics.Data.dll
+C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.Data\obj\Debug\net5.0\ref\MComics.Data.dll
+C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.Data\obj\Debug\net5.0\MComics.Data.pdb
+C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.Data\bin\Debug\net5.0\MComics.Core.dll
+C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.Data\bin\Debug\net5.0\MComics.Core.pdb
+C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.Data\obj\Debug\net5.0\MComics.Data.csproj.CopyComplete

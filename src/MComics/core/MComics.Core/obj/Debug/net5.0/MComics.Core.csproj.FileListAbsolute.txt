@@ -1,0 +1,12 @@
+C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\core\MComics.Core\bin\Debug\net5.0\MComics.Core.deps.json
+C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\core\MComics.Core\bin\Debug\net5.0\MComics.Core.dll
+C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\core\MComics.Core\bin\Debug\net5.0\ref\MComics.Core.dll
+C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\core\MComics.Core\bin\Debug\net5.0\MComics.Core.pdb
+C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\core\MComics.Core\obj\Debug\net5.0\MComics.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\core\MComics.Core\obj\Debug\net5.0\MComics.Core.AssemblyInfoInputs.cache
+C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\core\MComics.Core\obj\Debug\net5.0\MComics.Core.AssemblyInfo.cs
+C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\core\MComics.Core\obj\Debug\net5.0\MComics.Core.csproj.CoreCompileInputs.cache
+C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\core\MComics.Core\obj\Debug\net5.0\MComics.Core.dll
+C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\core\MComics.Core\obj\Debug\net5.0\ref\MComics.Core.dll
+C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\core\MComics.Core\obj\Debug\net5.0\MComics.Core.pdb
+C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\core\MComics.Core\obj\Debug\net5.0\MComics.Core.csprojAssemblyReference.cache
