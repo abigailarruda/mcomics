@@ -19,10 +19,25 @@ namespace MComics.API.Controllers
             _personagemApplication = personagemApplication;
         }
 
-        [HttpGet("BuscarListaPersonagens")]
-        public async Task<IActionResult> BuscarListaQuadrinhos(string nome = "")
+        [HttpGet("BuscarPersonagem{Id}")]
+        public async Task<IActionResult> BuscarPersonagem(int Id)
         {
-            var filtro = new FilterBase(1, nome, 0, 0);
+            var filtro = new FilterBase(string.Empty, Id);
+            var result = await _personagemApplication.BuscarEntidade(filtro);
+
+            if (result == null)
+            {
+                AdicionaErroBase();
+                return CustomResponse();
+            }
+
+            return CustomResponse(result);
+        }
+
+        [HttpGet("BuscarListaPersonagens")]
+        public async Task<IActionResult> BuscarListaQuadrinhos(string nome)
+        {
+            var filtro = new FilterBase(nome, 0);
             var result = await _personagemApplication.BuscarLista(filtro);
 
             if (result == null)

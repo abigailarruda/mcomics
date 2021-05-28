@@ -18,9 +18,9 @@ namespace MComics.Business.Application
             _personagemService = personagemService;
         }
 
-        public Task<Personagem> BuscarEntidade(FilterBase parameter)
+        public async Task<Personagem> BuscarEntidade(FilterBase parameter)
         {
-            throw new NotImplementedException();
+            return await _personagemService.BuscarEntidade(parameter);
         }
 
         public async Task<IEnumerable<Personagem>> BuscarLista(FilterBase parameter)

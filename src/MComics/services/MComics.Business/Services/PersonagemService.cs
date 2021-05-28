@@ -31,9 +31,15 @@ namespace MComics.Business.Services
             _integrationKey = integrationKey;
         }
 
-        public Task<Personagem> BuscarEntidade(FilterBase parameter)
+        public async Task<Personagem> BuscarEntidade(FilterBase parameter)
         {
-            throw new NotImplementedException();
+            StringBuilder requestUrl = new StringBuilder();
+            requestUrl.Append($"{_integrationModel.RequestUrl}/characters/{parameter.Id}?&");
+            requestUrl.Append($"&ts={currentDate}&apikey={_integrationKey.PublicKey}");
+            requestUrl.Append($"&hash={IntegrationService.GerarHashCode(currentDate, _integrationKey.PrivateKey, _integrationKey.PublicKey)}");
+
+            var response = await _httpClient.GetFromJsonAsync<RootResponsePersonagem>(requestUrl.ToString());
+            return _personagemAdapter.CreateEntity(response.data.results.First());
         }
 
         public async Task<IEnumerable<Personagem>> BuscarLista(FilterBase parameter)

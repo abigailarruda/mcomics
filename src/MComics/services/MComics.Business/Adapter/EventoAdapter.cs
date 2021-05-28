@@ -10,18 +10,18 @@ using System.Threading.Tasks;
 
 namespace MComics.Business.Adapter
 {
-    public class PersonagemAdapter : IPersonagemAdapter
+    public class EventoAdapter : IEventoAdapter
     {
-        public Personagem CreateEntity(ResultPersonagem responseModel)
+        public Evento CreateEntity(ResultEvento responseModel)
         {
-            return new Personagem()
+            return new Evento()
             {
                 Id = responseModel.id,
-                Nome = responseModel.name,
+                Titulo = responseModel.title,
                 Descricao = responseModel.description,
                 Imagem = responseModel.thumbnail.path,
-                Eventos = AdapterService.MontaListaEntidades(responseModel.events),
-                Quadrinhos = AdapterService.MontaListaEntidades(responseModel.comics)
+                Quadrinhos = AdapterService.MontaListaEntidades(responseModel.comics),
+                Personagens = AdapterService.MontaListaEntidades(responseModel.characters)
             };
         }
     }

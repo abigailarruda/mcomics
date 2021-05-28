@@ -20,22 +20,25 @@ namespace MComics.API.Configuration
     {
         public static void RegisterDependenciesServices(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddSingleton<IIntegrationKey>(new IntegrationKey(configuration.GetKeysConnection("public"),
+                configuration.GetKeysConnection("private")));
+
             services.AddSingleton<IIntegrationModel>(x => x.GetRequiredService<IOptions<IntegrationModel>>().Value);
+
+            services.AddScoped<IQuadrinhoApplication, QuadrinhoApplication>();
+            services.AddScoped<IPersonagemApplication, PersonagemApplication>();
+            services.AddScoped<IEventoApplication, EventoApplication>();
 
             services.AddHttpClient<IQuadrinhoService, QuadrinhoService>
                 (b => b.BaseAddress = new Uri(configuration["IntegrationConfig:RequestUrl"]));
-
             services.AddHttpClient<IPersonagemService, PersonagemService>
+                (b => b.BaseAddress = new Uri(configuration["IntegrationConfig:RequestUrl"]));
+            services.AddHttpClient<IEventoService, EventoService>
                 (b => b.BaseAddress = new Uri(configuration["IntegrationConfig:RequestUrl"]));
 
             services.AddScoped<IQuadrinhoAdapter, QuadrinhoAdapter>();
             services.AddScoped<IPersonagemAdapter, PersonagemAdapter>();
-
-            services.AddSingleton<IIntegrationKey>(new IntegrationKey(configuration.GetKeysConnection("public"),
-                configuration.GetKeysConnection("private")));
-
-            services.AddScoped<IQuadrinhoApplication, QuadrinhoApplication>();
-            services.AddScoped<IPersonagemApplication, PersonagemApplication>();
+            services.AddScoped<IEventoAdapter, EventoAdapter>();
 
         }
     }

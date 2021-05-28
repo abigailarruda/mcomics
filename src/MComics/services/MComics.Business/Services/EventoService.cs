@@ -14,50 +14,50 @@ using System.Threading.Tasks;
 
 namespace MComics.Business.Services
 {
-    public class QuadrinhoService : IQuadrinhoService
+    public class EventoService : IEventoService
     {
         private readonly IIntegrationModel _integrationModel;
         private readonly HttpClient _httpClient;
-        private readonly IQuadrinhoAdapter _quadrinhoAdapter;
+        private readonly IEventoAdapter _eventoAdapter;
         private readonly IIntegrationKey _integrationKey;
         private readonly string currentDate = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
-        public QuadrinhoService(IIntegrationModel integrationModel, HttpClient httpClient, IQuadrinhoAdapter quadrinhoAdapter,
+
+        public EventoService(IIntegrationModel integrationModel, HttpClient httpClient, IEventoAdapter eventoAdapter,
             IIntegrationKey integrationKey)
         {
             _integrationModel = integrationModel;
             _httpClient = httpClient;
-            _quadrinhoAdapter = quadrinhoAdapter;
+            _eventoAdapter = eventoAdapter;
             _integrationKey = integrationKey;
         }
 
-        public async Task<Quadrinho> BuscarEntidade(FilterBase parameter)
+        public async Task<Evento> BuscarEntidade(FilterBase parameter)
         {
             StringBuilder requestUrl = new StringBuilder();
-            requestUrl.Append($"{_integrationModel.RequestUrl}/comics/{parameter.Id}?&");
+            requestUrl.Append($"{_integrationModel.RequestUrl}/events/{parameter.Id}?&");
             requestUrl.Append($"&ts={currentDate}&apikey={_integrationKey.PublicKey}");
             requestUrl.Append($"&hash={IntegrationService.GerarHashCode(currentDate, _integrationKey.PrivateKey, _integrationKey.PublicKey)}");
 
-            var response = await _httpClient.GetFromJsonAsync<RootResponseQuadrinho>(requestUrl.ToString());
-            return _quadrinhoAdapter.CreateEntity(response.data.results.First());
+            var response = await _httpClient.GetFromJsonAsync<RootResponseEvento>(requestUrl.ToString());
+            return _eventoAdapter.CreateEntity(response.data.results.First());
         }
 
-        public async Task<IEnumerable<Quadrinho>> BuscarLista(FilterBase parameter)
+        public async Task<IEnumerable<Evento>> BuscarLista(FilterBase parameter)
         {
             StringBuilder requestUrl = new StringBuilder();
-            requestUrl.Append($"{_integrationModel.RequestUrl}/comics?");
+            requestUrl.Append($"{_integrationModel.RequestUrl}/events?");
 
-            if (!string.IsNullOrEmpty(parameter.Nome)) requestUrl.Append($"titleStartsWith={parameter.Nome}&");
+            if (!string.IsNullOrEmpty(parameter.Nome)) requestUrl.Append($"nameStartsWith={parameter.Nome}&");
 
             requestUrl.Append($"orderBy=modified&ts={currentDate}&apikey={_integrationKey.PublicKey}");
             requestUrl.Append($"&hash={IntegrationService.GerarHashCode(currentDate, _integrationKey.PrivateKey, _integrationKey.PublicKey)}");
 
-            var response = await _httpClient.GetFromJsonAsync<RootResponseQuadrinho>
-                (requestUrl.ToString());
+            var response = await _httpClient.GetFromJsonAsync<RootResponseEvento>(requestUrl.ToString());
 
-            var result = new List<Quadrinho>();
-            foreach (var quadrinho in response.data.results)
+            var result = new List<Evento>();
+            foreach (var evento in response.data.results)
             {
-               result.Add(_quadrinhoAdapter.CreateEntity(quadrinho));
+                result.Add(_eventoAdapter.CreateEntity(evento));
             }
 
             return result;
@@ -65,7 +65,7 @@ namespace MComics.Business.Services
 
         public void Dispose()
         {
-            _httpClient?.Dispose();
+            _httpClient.Dispose();
         }
     }
 }

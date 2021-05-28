@@ -9,4 +9,9 @@
         public PersonagemResponse data { get; set; }
     }
 
+    public class RootResponseEvento
+    {
+        public EventoResponse data { get; set; }
+    }
+
 }

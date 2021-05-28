@@ -9,21 +9,20 @@ using System.Threading.Tasks;
 
 namespace MComics.API.Controllers
 {
-    [Route("api/quadrinho")]
-    public class QuadrinhoController : MainController
+    [Route("api/personagens")]
+    public class EventoController : MainController
     {
-        private readonly IQuadrinhoApplication _quadrinhoApplication;
-
-        public QuadrinhoController(IQuadrinhoApplication quadrinhoApplication)
+        private readonly IEventoApplication _eventoApplication;
+        public EventoController(IEventoApplication eventoApplication)
         {
-            _quadrinhoApplication = quadrinhoApplication;
+            _eventoApplication = eventoApplication;
         }
 
-        [HttpGet("BuscarQuadrinho{Id}")]
-        public async Task<IActionResult> BuscarQuadrinho(int Id)
+        [HttpGet("BuscarEvento{Id}")]
+        public async Task<IActionResult> BuscarEvento(int Id)
         {
-            var filtro = new FilterBase(string.Empty, Id);
-            var result = await _quadrinhoApplication.BuscarEntidade(filtro);
+            var filtro = new FilterBase(string.Empty,Id);
+            var result = await _eventoApplication.BuscarEntidade(filtro);
 
             if (result == null)
             {
@@ -34,11 +33,11 @@ namespace MComics.API.Controllers
             return CustomResponse(result);
         }
 
-        [HttpGet("BuscarListaQuadrinhos")]
+        [HttpGet("BuscarListaEventos")]
         public async Task<IActionResult> BuscarListaQuadrinhos(string nome)
         {
             var filtro = new FilterBase(nome, 0);
-            var result = await _quadrinhoApplication.BuscarLista(filtro);
+            var result = await _eventoApplication.BuscarLista(filtro);
 
             if (result == null)
             {

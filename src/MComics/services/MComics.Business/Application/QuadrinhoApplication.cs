@@ -18,9 +18,9 @@ namespace MComics.Business.Application
             _quadrinhoService = quadrinhoService;
         }
 
-        public Task<Quadrinho> BuscarEntidade(FilterBase parameter)
+        public async Task<Quadrinho> BuscarEntidade(FilterBase parameter)
         {
-            throw new NotImplementedException();
+            return await _quadrinhoService.BuscarEntidade(parameter);
         }
 
         public async Task<IEnumerable<Quadrinho>> BuscarLista(FilterBase parameter)

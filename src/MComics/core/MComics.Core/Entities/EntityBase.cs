@@ -6,7 +6,7 @@ namespace MComics.Core.Entities
 {
     public abstract class EntityBase
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public override string ToString()
         {
             return $"{GetType().Name } [Id = {Id}]";

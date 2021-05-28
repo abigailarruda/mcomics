@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-namespace NSE.Identidade.API.Controllers
+namespace MComics.API.Controllers
 {
     [Route("api/identidade")]
     public class AuthController : MainController
@@ -58,7 +58,7 @@ namespace NSE.Identidade.API.Controllers
             return CustomResponse();
         }
 
-        [HttpPost("autenticar")]
+        [HttpPost("Autenticar")]
         public async Task<ActionResult> Login(UsuarioLogin usuarioLogin)
         {
             if (!ModelState.IsValid) return CustomResponse(ModelState);

@@ -8,19 +8,22 @@ using System.Threading.Tasks;
 
 namespace MComics.Business.Models
 {
-    public class Personagem : EntityBase, IAggregateRoot
+    public class Evento : EntityBase, IAggregateRoot
     {
-        public string Nome { get; set; }
+        public string Titulo { get; set; }
         public string Descricao { get; set; }
         public string Imagem { get; set; }
         public List<EntityPartial> Quadrinhos { get; set; }
-        public List<EntityPartial> Eventos { get; set; }
-        public Personagem(string nome, string descricao, string imagem)
+        public List<EntityPartial> Personagens { get; set; }
+
+        public Evento(string titulo, string descricao, string imagem, List<EntityPartial> quadrinhos, List<EntityPartial> personagens)
         {
-            Nome = nome;
+            Titulo = titulo;
             Descricao = descricao;
             Imagem = imagem;
+            Quadrinhos = quadrinhos;
+            Personagens = personagens;
         }
-        public Personagem() { }
+        public Evento(){ }
     }
 }
