@@ -1,0 +1,128 @@
+@use "../utilities/colors" as *;
+@use "../utilities/breakpoints" as *;
+
+:root,
+html {
+  font: 400 16px Karla;
+  background-color: $steel;
+}
+
+@media (max-width: $lg) {
+  :root,
+  html {
+    font-size: 87.5%;
+  }
+}
+
+@media (max-width: $md) {
+  :root,
+  html {
+    font-size: 75%;
+  }
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: 0 !important;
+}
+
+*:focus {
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+
+html,
+body,
+#root {
+  height: 100vh;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+body {
+  text-rendering: optimizeSpeed;
+}
+
+*,
+body,
+input,
+button,
+textarea {
+  font: 400 1rem Karla;
+  color: $silver;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Source Code Pro", sans-serif;
+  font-weight: 500;
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0 !important;
+  background: $steel;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $steel;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.tippy-popper[x-placement^="bottom"] [x-arrow].arrow-small {
+  border-bottom-color: $silver !important;
+}
+
+.tippy-popper[x-placement^="top"] [x-arrow].arrow-small {
+  border-top-color: $silver !important;
+}
+
+.tippy-tooltip-content {
+  color: $steel !important;
+  font-weight: 500;
+}
+
+.tippy-tooltip {
+  background-color: $silver !important;
+}

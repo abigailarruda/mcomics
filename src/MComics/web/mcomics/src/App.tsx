@@ -1,9 +1,17 @@
 import React from "react";
 
+import Routes from "./routes";
+
+import { ComicProvider } from "./contexts/ComicContext";
+
+import "./assets/styles/global.scss";
+
 function App() {
   return (
     <div className="App">
-      <h1>MComics</h1>
+      <ComicProvider>
+        <Routes />
+      </ComicProvider>
     </div>
   );
 }
