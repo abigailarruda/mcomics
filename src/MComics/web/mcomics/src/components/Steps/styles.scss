@@ -1,0 +1,154 @@
+@use "../../assets/utilities/colors" as *;
+@use "../../assets/utilities/breakpoints" as *;
+
+.step-container {
+  width: 100%;
+
+  width: 30%;
+
+  @media (max-width: $md) {
+    width: 50%;
+  }
+
+  @media (max-width: $md) {
+    width: 70%;
+  }
+
+  h1 {
+    font: 500 1rem "Source Code Pro";
+    text-align: center;
+
+    color: $smoke-dark;
+
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font: 400 0.75rem Karla;
+    text-align: center;
+
+    color: $smoke-extra-dark;
+
+    margin-bottom: 2rem;
+  }
+
+  input {
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+
+    width: 100% !important;
+    min-height: 1.5rem;
+    max-height: 2.5rem;
+
+    border: 0;
+    border-radius: 4px;
+
+    font: 400 1rem Karla !important;
+    line-height: 1rem;
+
+    color: $smoke-dark !important;
+
+    background: $slate;
+    background-clip: padding-box;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    &:last-of-type {
+      margin-bottom: 2rem;
+    }
+
+    &.search {
+      margin-bottom: 0.5rem;
+      border-radius: 4px 0 0 4px;
+    }
+  }
+
+  .search-container {
+    display: flex;
+
+    button.search-button {
+      font-size: 0;
+
+      max-width: 2.5rem;
+
+      padding: 0.75rem;
+
+      white-space: nowrap;
+
+      border-radius: 0 4px 4px 0;
+      border: 0;
+
+      color: $smoke-dark;
+      background-color: $slate;
+    }
+  }
+
+  button {
+    padding: 1rem;
+
+    width: 100%;
+    min-height: 1.5rem;
+    max-height: 2.5rem;
+
+    border: 0;
+    border-radius: 4px;
+
+    font: 400 1rem Karla !important;
+    line-height: 1rem;
+
+    color: $white !important;
+
+    background: $red;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background: darken($red, 5%);
+
+      transition: all 0.2s ease-in-out;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+    }
+  }
+
+  .icons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 2fr;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+
+    [type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    [type="radio"] + img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      border-radius: 4px;
+
+      padding: 0;
+      margin: 0;
+
+      border: 2px solid $slate;
+    }
+
+    [type="radio"]:checked + img {
+      border-color: $red;
+    }
+  }
+}

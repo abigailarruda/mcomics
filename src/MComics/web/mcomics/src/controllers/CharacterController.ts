@@ -24,4 +24,28 @@ export default class CharacterController {
 
     return Characters;
   }
+
+  static async getCharactersByName(name: string) {
+    const { data } = await api.get("/api/personagens/BuscarListaPersonagens", {
+      params: { nome: name },
+    });
+
+    const Characters: Character[] = [];
+
+    for (const d of data) {
+      const character = new Character(
+        d.nome,
+        d.descricao,
+        d.imagem + "/standard_fantastic.jpg",
+        d.quadrinhos,
+        d.eventos
+      );
+
+      character.setCharacterId(d.id);
+
+      Characters.push(character);
+    }
+
+    return Characters;
+  }
 }

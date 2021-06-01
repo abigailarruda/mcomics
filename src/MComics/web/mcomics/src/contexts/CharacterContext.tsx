@@ -9,6 +9,8 @@ import _ from "underscore";
 interface CharacterContextData {
   //character: Character;
   randomCharacters: Character[];
+  searchedCharacters: Character[];
+  getCharactersByName(name: string): void;
 }
 
 interface CharacterProviderProps {
@@ -31,6 +33,8 @@ export function CharacterProvider({ children }: CharacterProviderProps) {
     initialCharacter,
   ]);
 
+  const [searchedCharacters, setSearchedCharacters] = useState<Character[]>([]);
+
   async function getRandomCharacters() {
     const randCharacters = _.sample(
       await CharacterController.getAllCharacters(),
@@ -39,12 +43,22 @@ export function CharacterProvider({ children }: CharacterProviderProps) {
     setRandomCharacters(_.sortBy(randCharacters, "name"));
   }
 
+  async function getCharactersByName(name: string) {
+    setSearchedCharacters(await CharacterController.getCharactersByName(name));
+  }
+
   useEffect(() => {
     getRandomCharacters();
   }, []);
 
   return (
-    <CharacterContext.Provider value={{ /* Character, */ randomCharacters }}>
+    <CharacterContext.Provider
+      value={{
+        /* Character, */ randomCharacters,
+        searchedCharacters,
+        getCharactersByName,
+      }}
+    >
       {children}
     </CharacterContext.Provider>
   );

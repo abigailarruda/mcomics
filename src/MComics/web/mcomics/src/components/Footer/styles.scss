@@ -16,12 +16,12 @@ footer {
   a {
     font: 600 1rem "Source Code Pro";
     margin-bottom: 0.5rem;
-    color: $smoke-extra-dark;
+    color: $smoke;
   }
 
   p {
     font: 400 0.75rem Karla;
-    color: $silver;
+    color: $smoke-extra-dark;
   }
 
   @media (max-width: $md) {
