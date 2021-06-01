@@ -79,7 +79,7 @@ a {
 }
 
 ::-webkit-scrollbar {
-  width: 0.25rem;
+  width: 0;
 }
 
 ::-webkit-scrollbar-track {
@@ -88,11 +88,11 @@ a {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 0 !important;
-  background: $steel;
+  background: transparent !important;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: $steel;
+  background: transparent !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -119,8 +119,8 @@ a {
 }
 
 .tippy-tooltip-content {
-  color: $steel !important;
-  font-weight: 500;
+  color: $snow-extra-dark !important;
+  font-weight: 400;
 }
 
 .tippy-tooltip {

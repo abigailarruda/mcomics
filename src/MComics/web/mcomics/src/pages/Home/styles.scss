@@ -14,11 +14,18 @@
   }
 }
 
-.most-popular-container {
+.most-popular-container,
+.random-container {
+  margin-bottom: 3rem;
+
   h2 {
     font: 400 1.5rem "Source Code Pro";
     color: $smoke-dark !important;
     margin-bottom: 1rem;
+
+    @media (max-width: $sm) {
+      font-size: 1rem;
+    }
   }
 
   hr {
@@ -36,8 +43,31 @@
 
   .most-popular {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: 1fr;
-    gap: 0px 1rem;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: 2fr;
+    gap: 1rem;
+
+    @media (max-width: $md) {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 4fr;
+    }
   }
+
+  .random-characters {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: 1fr;
+    gap: 1rem;
+
+    @media (max-width: $md) {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 2fr;
+    }
+  }
+}
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -4,13 +4,14 @@ import { Tooltip } from "react-tippy";
 
 import "./styles.scss";
 
-interface ComicCardProps {
+interface CardProps {
   id: number;
+  type: string;
   title: string;
   thumbnail: string;
 }
 
-const ComicCard: React.FC<ComicCardProps> = ({ id, title, thumbnail }) => {
+const Card: React.FC<CardProps> = ({ id, type, title, thumbnail }) => {
   return (
     <Tooltip
       title={title}
@@ -21,7 +22,7 @@ const ComicCard: React.FC<ComicCardProps> = ({ id, title, thumbnail }) => {
       trigger={"mouseenter"}
     >
       <div className="comic-card">
-        <Link to="/">
+        <Link to={`/${type}?id=${id}`}>
           <img src={thumbnail} alt={title} />
         </Link>
       </div>
@@ -29,4 +30,4 @@ const ComicCard: React.FC<ComicCardProps> = ({ id, title, thumbnail }) => {
   );
 };
 
-export default ComicCard;
+export default Card;

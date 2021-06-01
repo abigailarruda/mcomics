@@ -22,4 +22,8 @@ export default class Character {
     this.comics = comics;
     this.events = events;
   }
+
+  setCharacterId(id: number) {
+    this.id = id;
+  }
 }

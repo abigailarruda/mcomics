@@ -1,4 +1,5 @@
 import React from "react";
+
 import { ArrowRight } from "react-feather";
 
 import { Link } from "react-router-dom";
@@ -20,8 +21,8 @@ const Header: React.FC = () => {
       </p>
 
       <button className="call-to-action">
-        <Link to="/">
-          <span>Get started</span>
+        <Link to={true ? "/profile" : "/sign-up"}>
+          <span>{true ? "Track now" : "Get started"}</span>
           <ArrowRight color="#ffffff" size="1rem" />
         </Link>
       </button>

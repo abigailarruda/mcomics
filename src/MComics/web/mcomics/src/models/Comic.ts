@@ -25,7 +25,7 @@ export default class Comic {
     this.title = title;
     this.description = description;
     this.images = images;
-    this.thumbnail = thumbnail;
+    this.thumbnail = thumbnail + "/portrait_uncanny.jpg";
     this.creators = creators;
     this.characters = characters;
     this.events = events;

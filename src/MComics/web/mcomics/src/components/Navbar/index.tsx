@@ -56,7 +56,7 @@ const Navbar: React.FC = () => {
         {true ? (
           <Link to="/" className="user-image">
             <img
-              src="https://uploads.jovemnerd.com.br/wp-content/uploads/2018/10/coreano-friendly-neighborhood-spider-man-1210x540.png"
+              src="http://i.annihil.us/u/prod/marvel/i/mg/d/d0/5269657a74350.jpg"
               alt="Imagem do usuário"
             />
           </Link>
