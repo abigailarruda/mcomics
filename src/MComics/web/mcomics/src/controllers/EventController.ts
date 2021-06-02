@@ -48,4 +48,20 @@ export default class EventController {
 
     return events;
   }
+
+  static async getEventById(id: number) {
+    const { data } = await api.get(`/api/personagens/BuscarEvento${id}`);
+
+    const event = new Event(
+      data.titulo,
+      data.descricao,
+      data.imagem,
+      data.quadrinhos,
+      data.personagens
+    );
+
+    event.setEventId(data.id);
+
+    return event;
+  }
 }

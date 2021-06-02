@@ -8,10 +8,11 @@ import _ from "underscore";
 import { trackPromise } from "react-promise-tracker";
 
 interface ComicContextData {
-  //comic: Comic;
+  comic: Comic | null;
   mostPopular: Comic[];
   searchedComics: Comic[];
   getComicsByName(name: string): Promise<unknown>;
+  getComicById(id: number): Promise<unknown>;
 }
 
 interface ComicProviderProps {
@@ -21,7 +22,7 @@ interface ComicProviderProps {
 export const ComicContext = createContext({} as ComicContextData);
 
 export function ComicProvider({ children }: ComicProviderProps) {
-  //const [comic, setComic] = useState(initialComic);
+  const [comic, setComic] = useState<Comic | null>(null);
   const [mostPopular, setMostPopular] = useState<Comic[]>([]);
 
   const [searchedComics, setSearchedComics] = useState<Comic[]>([]);
@@ -37,13 +38,23 @@ export function ComicProvider({ children }: ComicProviderProps) {
     setSearchedComics(await ComicController.getComicsByName(name));
   }
 
+  async function getComicById(id: number) {
+    setComic(await ComicController.getComicById(id));
+  }
+
   useEffect(() => {
     trackPromise(getMostPopular());
   }, []);
 
   return (
     <ComicContext.Provider
-      value={{ /* comic, */ searchedComics, getComicsByName, mostPopular }}
+      value={{
+        comic,
+        searchedComics,
+        getComicsByName,
+        mostPopular,
+        getComicById,
+      }}
     >
       {children}
     </ComicContext.Provider>

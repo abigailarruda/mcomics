@@ -41,8 +41,8 @@ function Search() {
 
     trackPromise(getEventsByName(searchParams || ""));
 
-    // eslint-disable-next-line
-  }, [location]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.search]);
 
   const { promiseInProgress } = usePromiseTracker();
 

@@ -9521,6 +9521,11 @@ react-scripts@4.0.3:
   optionalDependencies:
     fsevents "^2.1.3"
 
+react-simple-star-rating@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/react-simple-star-rating/-/react-simple-star-rating-1.0.6.tgz#ac6d9f937cc1833b457da2dd353891e8571c3dc1"
+  integrity sha512-wQzvZ9nPV7vtNxKF/yUxVjhkQhdhAkEEs5i6FhkFWwKfK4pZDc0sD/F3tQdaKQBJfKW4NGLI3RGkgRfQ/8vmxQ==
+
 react-step-builder@^2.0.10:
   version "2.0.10"
   resolved "https://registry.yarnpkg.com/react-step-builder/-/react-step-builder-2.0.10.tgz#d68b734ed6cea31edb8715d018dc0461f32de0ee"

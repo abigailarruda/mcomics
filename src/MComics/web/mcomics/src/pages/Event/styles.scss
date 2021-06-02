@@ -1,0 +1,106 @@
+@use "../../assets/utilities/colors" as *;
+@use "../../assets/utilities/breakpoints" as *;
+
+.event-container {
+  width: 100%;
+  padding: 1.5rem 10rem;
+
+  margin-bottom: 5rem;
+
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr;
+  gap: 0 4rem;
+
+  @media (max-width: $md) {
+    padding: 1.5rem 5rem;
+
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+    gap: 2rem;
+  }
+
+  @media (max-width: $sm) {
+    padding: 1.5rem 2.5rem;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr;
+    gap: 2rem;
+  }
+
+  img {
+    width: 100%;
+
+    object-fit: cover;
+
+    border-radius: 4px;
+
+    padding: 0;
+    margin: 0;
+
+    border: 2px solid $slate;
+  }
+
+  .event-info {
+    h2 {
+      font: 400 1.5rem "Source Code Pro";
+
+      color: $smoke-dark;
+
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: $silver;
+
+      line-height: 1.5rem;
+
+      margin-bottom: 2rem;
+    }
+
+    h3 {
+      font: 600 1rem "Source Code Pro";
+
+      color: $smoke-dark;
+
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.all-characters,
+.all-comics {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: space-between;
+  align-items: flex-start;
+
+  margin-bottom: 2rem;
+
+  p {
+    color: $silver;
+
+    line-height: 1.5rem;
+
+    margin-bottom: 0rem !important;
+  }
+
+  a.tag {
+    background-color: $slate;
+
+    color: $smoke-extra-dark;
+
+    font: 500 0.75rem Karla;
+
+    border-radius: 2px;
+
+    padding: 0.25rem 0.5rem;
+
+    clear: both;
+
+    margin-right: 0.25rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+}

@@ -4,13 +4,11 @@ import EventController from "../controllers/EventController";
 
 import Event from "../models/Event";
 
-//import _ from "underscore";
-//import { trackPromise } from "react-promise-tracker";
-
 interface EventContextData {
-  //event: Event;
+  event: Event | null;
   searchedEvents: Event[];
   getEventsByName(name: string): Promise<unknown>;
+  getEventById(id: number): Promise<unknown>;
 }
 
 interface EventProviderProps {
@@ -20,7 +18,7 @@ interface EventProviderProps {
 export const EventContext = createContext({} as EventContextData);
 
 export function EventProvider({ children }: EventProviderProps) {
-  //const [event, setEvent] = useState(initialEvent);
+  const [event, setEvent] = useState<Event | null>(null);
   const [searchedEvents, setSearchedEvents] = useState<Event[]>([]);
 
   async function getEventsByName(name: string) {
@@ -28,9 +26,13 @@ export function EventProvider({ children }: EventProviderProps) {
     setSearchedEvents(await EventController.getEventsByName(name));
   }
 
+  async function getEventById(id: number) {
+    setEvent(await EventController.getEventById(id));
+  }
+
   return (
     <EventContext.Provider
-      value={{ /* event, */ searchedEvents, getEventsByName }}
+      value={{ event, searchedEvents, getEventsByName, getEventById }}
     >
       {children}
     </EventContext.Provider>

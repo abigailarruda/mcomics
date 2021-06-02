@@ -8,10 +8,11 @@ import _ from "underscore";
 import { trackPromise } from "react-promise-tracker";
 
 interface CharacterContextData {
-  //character: Character;
+  character: Character | null;
   randomCharacters: Character[];
   searchedCharacters: Character[];
   getCharactersByName(name: string): Promise<unknown>;
+  getCharacterById(id: number): Promise<unknown>;
 }
 
 interface CharacterProviderProps {
@@ -21,7 +22,7 @@ interface CharacterProviderProps {
 export const CharacterContext = createContext({} as CharacterContextData);
 
 export function CharacterProvider({ children }: CharacterProviderProps) {
-  //const [character, setCharacter] = useState(initialCharacter);
+  const [character, setCharacter] = useState<Character | null>(null);
   const [randomCharacters, setRandomCharacters] = useState<Character[]>([]);
 
   const [searchedCharacters, setSearchedCharacters] = useState<Character[]>([]);
@@ -40,6 +41,10 @@ export function CharacterProvider({ children }: CharacterProviderProps) {
     setSearchedCharacters(await CharacterController.getCharactersByName(name));
   }
 
+  async function getCharacterById(id: number) {
+    setCharacter(await CharacterController.getCharacterById(id));
+  }
+
   useEffect(() => {
     trackPromise(getRandomCharacters());
   }, []);
@@ -47,9 +52,11 @@ export function CharacterProvider({ children }: CharacterProviderProps) {
   return (
     <CharacterContext.Provider
       value={{
-        /* Character, */ randomCharacters,
+        character,
+        randomCharacters,
         searchedCharacters,
         getCharactersByName,
+        getCharacterById,
       }}
     >
       {children}

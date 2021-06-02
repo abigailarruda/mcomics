@@ -1,0 +1,190 @@
+@use "../../assets/utilities/colors" as *;
+@use "../../assets/utilities/breakpoints" as *;
+
+.comic-container {
+  width: 100%;
+  padding: 1.5rem 10rem;
+
+  margin-bottom: 5rem;
+
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0 4rem;
+
+  @media (max-width: $md) {
+    padding: 1.5rem 5rem;
+
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 2fr;
+    gap: 2rem;
+  }
+
+  @media (max-width: $sm) {
+    padding: 1.5rem 2.5rem;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: 3fr;
+    gap: 2rem;
+  }
+
+  img {
+    width: 100%;
+
+    object-fit: cover;
+
+    border-radius: 4px;
+
+    padding: 0;
+    margin: 0;
+
+    border: 2px solid $slate;
+
+    @media (max-width: $sm) {
+      order: 1;
+    }
+  }
+
+  .comic-info {
+    @media (max-width: $sm) {
+      order: 3;
+    }
+
+    h2 {
+      font: 400 1.5rem "Source Code Pro";
+
+      color: $smoke-dark;
+
+      margin-bottom: 0.5rem;
+    }
+
+    h4 {
+      font: 500 1rem "Source Code Pro";
+
+      color: $smoke-extra-dark;
+
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: $silver;
+
+      line-height: 1.5rem;
+
+      margin-bottom: 2rem;
+    }
+
+    h3 {
+      font: 600 1rem "Source Code Pro";
+
+      color: $smoke-dark;
+
+      margin-bottom: 1rem;
+    }
+  }
+
+  .user-actions {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    @media (max-width: $sm) {
+      order: 2;
+    }
+
+    span {
+      margin-bottom: 1rem;
+
+      text-align: center;
+
+      span {
+        margin-right: 0.5rem;
+      }
+    }
+
+    button {
+      padding: 1rem;
+
+      width: 100%;
+
+      min-height: 3rem;
+
+      border: 0;
+      border-radius: 4px;
+
+      background: $red;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font: 400 1rem Karla !important;
+      line-height: 1rem;
+
+      transition: all 0.2s ease-in-out;
+
+      margin-bottom: 1rem;
+
+      &:hover {
+        background: darken($red, 5%);
+
+        transition: all 0.2s ease-in-out;
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+
+      span.button-text {
+        font: 400 1rem Karla !important;
+        line-height: 1rem;
+
+        color: $white !important;
+
+        margin-left: 0.5rem;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.all-events,
+.all-characters {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: space-between;
+  align-items: flex-start;
+
+  margin-bottom: 2rem;
+
+  p {
+    color: $silver;
+
+    line-height: 1.5rem;
+
+    margin-bottom: 0rem !important;
+  }
+
+  a.tag {
+    background-color: $slate;
+
+    color: $smoke-extra-dark;
+
+    font: 500 0.75rem Karla;
+
+    border-radius: 2px;
+
+    padding: 0.25rem 0.5rem;
+
+    clear: both;
+
+    margin-right: 0.25rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+}
