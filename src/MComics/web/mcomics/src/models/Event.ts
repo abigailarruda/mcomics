@@ -18,8 +18,12 @@ export default class Event {
   ) {
     this.title = title;
     this.description = description;
-    this.image = image;
+    this.image = image + "/portrait_uncanny.jpg";
     this.comics = comics;
     this.characters = characters;
+  }
+
+  setEventId(id: number) {
+    this.id = id;
   }
 }

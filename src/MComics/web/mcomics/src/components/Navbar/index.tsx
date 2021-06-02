@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { LogOut, Search, User } from "react-feather";
 
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import { Tooltip } from "react-tippy";
 
@@ -10,6 +10,19 @@ import "../../../node_modules/react-tippy/dist/tippy.css";
 import "./styles.scss";
 
 const Navbar: React.FC = () => {
+  const [searchInput, setSearchInput] = useState("");
+
+  function handleSearchInput(event: any) {
+    const { value } = event.target;
+    setSearchInput(value);
+  }
+
+  const history = useHistory();
+
+  function submitSearchForm() {
+    history.push(`/search?q=${searchInput}`);
+  }
+
   return (
     <nav>
       <h1>
@@ -23,13 +36,13 @@ const Navbar: React.FC = () => {
           type="text"
           id="search"
           placeholder="Search..."
-          // value={search}
-          // onChange={handleSearchInput}
+          value={searchInput}
+          onChange={handleSearchInput}
         />
         <button
           className="search-button"
-          // onClick={submitSearchForm}
-          // disabled={!search}
+          onClick={submitSearchForm}
+          disabled={!searchInput}
         >
           <Search color="#d3dce6" size="1rem" />
         </button>

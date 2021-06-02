@@ -1,7 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 import Comic from "../../models/Comic";
 import Character from "../../models/Character";
+
+import { useLocation } from "react-router-dom";
+
+import { trackPromise, usePromiseTracker } from "react-promise-tracker";
 
 import { ComicContext } from "../../contexts/ComicContext";
 import { CharacterContext } from "../../contexts/CharacterContext";
@@ -11,13 +15,36 @@ import { v4 as uuidv4 } from "uuid";
 import Navbar from "../../components/Navbar";
 import Card from "../../components/Card";
 import Footer from "../../components/Footer";
-
-import "./styles.scss";
 import Loader from "../../components/Loader";
 
+import "./styles.scss";
+
+import { EventContext } from "../../contexts/EventContext";
+import Event from "../../models/Event";
+
 function Search() {
-  const { mostPopular } = useContext(ComicContext);
-  const { randomCharacters } = useContext(CharacterContext);
+  const { getEventsByName, searchedEvents } = useContext(EventContext);
+
+  const { getComicsByName, searchedComics } = useContext(ComicContext);
+
+  const { getCharactersByName, searchedCharacters } =
+    useContext(CharacterContext);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search).get("q");
+
+    trackPromise(getCharactersByName(searchParams || ""));
+
+    trackPromise(getComicsByName(searchParams || ""));
+
+    trackPromise(getEventsByName(searchParams || ""));
+
+    // eslint-disable-next-line
+  }, [location]);
+
+  const { promiseInProgress } = usePromiseTracker();
 
   return (
     <>
@@ -30,18 +57,26 @@ function Search() {
           <hr />
 
           <Loader />
+
+          {!searchedComics.length && !promiseInProgress && (
+            <p className="not-found">
+              It seems we can’t find any results based on your search.
+            </p>
+          )}
+
           <div className="comics">
-            {mostPopular.map((comic: Comic) => {
-              return (
-                <Card
-                  key={uuidv4()}
-                  type="comic"
-                  id={comic.id || 0}
-                  title={comic.title}
-                  thumbnail={comic.thumbnail}
-                />
-              );
-            })}
+            {searchedComics &&
+              searchedComics.map((comic: Comic) => {
+                return (
+                  <Card
+                    key={uuidv4()}
+                    type="comic"
+                    id={comic.id || 0}
+                    title={comic.title}
+                    thumbnail={comic.thumbnail}
+                  />
+                );
+              })}
           </div>
         </section>
 
@@ -50,19 +85,27 @@ function Search() {
 
           <hr />
 
+          {!searchedEvents.length && !promiseInProgress && (
+            <p className="not-found">
+              It seems we can’t find any results based on your search.
+            </p>
+          )}
+
           <Loader />
+
           <div className="events">
-            {mostPopular.map((comic: Comic) => {
-              return (
-                <Card
-                  key={uuidv4()}
-                  type="event"
-                  id={comic.id || 0}
-                  title={comic.title}
-                  thumbnail={comic.thumbnail}
-                />
-              );
-            })}
+            {searchedEvents &&
+              searchedEvents.map((event: Event) => {
+                return (
+                  <Card
+                    key={uuidv4()}
+                    type="event"
+                    id={event.id || 0}
+                    title={event.title}
+                    thumbnail={event.image}
+                  />
+                );
+              })}
           </div>
         </section>
 
@@ -72,18 +115,26 @@ function Search() {
           <hr />
 
           <Loader />
+
+          {!searchedCharacters.length && !promiseInProgress && (
+            <p className="not-found">
+              It seems we can’t find any results based on your search.
+            </p>
+          )}
+
           <div className="characters">
-            {randomCharacters.map((character: Character) => {
-              return (
-                <Card
-                  key={uuidv4()}
-                  type="character"
-                  id={character.id || 0}
-                  title={character.name}
-                  thumbnail={character.image}
-                />
-              );
-            })}
+            {searchedCharacters &&
+              searchedCharacters.map((character: Character) => {
+                return (
+                  <Card
+                    key={uuidv4()}
+                    type="character"
+                    id={character.id || 0}
+                    title={character.name}
+                    thumbnail={character.image}
+                  />
+                );
+              })}
           </div>
         </section>
       </div>

@@ -6,7 +6,7 @@ export default class CharacterController {
   static async getAllCharacters() {
     const { data } = await api.get("/api/personagens/BuscarListaPersonagens1");
 
-    const Characters: Character[] = [];
+    const characters: Character[] = [];
 
     for (const d of data) {
       const character = new Character(
@@ -19,10 +19,10 @@ export default class CharacterController {
 
       character.setCharacterId(d.id);
 
-      Characters.push(character);
+      characters.push(character);
     }
 
-    return Characters;
+    return characters;
   }
 
   static async getCharactersByName(name: string) {
@@ -30,7 +30,7 @@ export default class CharacterController {
       params: { nome: name },
     });
 
-    const Characters: Character[] = [];
+    const characters: Character[] = [];
 
     for (const d of data) {
       const character = new Character(
@@ -43,9 +43,9 @@ export default class CharacterController {
 
       character.setCharacterId(d.id);
 
-      Characters.push(character);
+      characters.push(character);
     }
 
-    return Characters;
+    return characters;
   }
 }
