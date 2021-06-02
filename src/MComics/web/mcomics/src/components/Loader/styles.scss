@@ -1,0 +1,8 @@
+@use "../../assets/utilities/colors" as *;
+@use "../../assets/utilities/breakpoints" as *;
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

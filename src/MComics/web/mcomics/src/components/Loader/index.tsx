@@ -4,6 +4,8 @@ import { usePromiseTracker } from "react-promise-tracker";
 
 import ReactLoading from "react-loading";
 
+import "./styles.scss";
+
 const Loader: React.FC = () => {
   const { promiseInProgress } = usePromiseTracker();
 
