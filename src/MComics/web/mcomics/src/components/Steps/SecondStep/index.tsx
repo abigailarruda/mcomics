@@ -9,7 +9,11 @@ import "../styles.scss";
 import { StepComponentProps } from "react-step-builder";
 
 import { v4 as uuidv4 } from "uuid";
+
 import { Search } from "react-feather";
+
+import { trackPromise } from "react-promise-tracker";
+import Loader from "../../Loader";
 
 const SecondStep: React.FC<StepComponentProps> = (
   props: StepComponentProps
@@ -32,7 +36,7 @@ const SecondStep: React.FC<StepComponentProps> = (
   }
 
   function searchCharacters() {
-    getCharactersByName(search);
+    trackPromise(getCharactersByName(search));
   }
 
   useEffect(() => {}, [searchedCharacters]);
@@ -56,6 +60,8 @@ const SecondStep: React.FC<StepComponentProps> = (
           <Search color="#d3dce6" size="1rem" />
         </button>
       </div>
+
+      <Loader />
 
       <div className="icons">
         {searchedCharacters.map((character: Character) => {
