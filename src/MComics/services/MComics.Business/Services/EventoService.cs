@@ -49,7 +49,7 @@ namespace MComics.Business.Services
 
             if (!string.IsNullOrEmpty(parameter.Nome)) requestUrl.Append($"nameStartsWith={parameter.Nome}&");
 
-            requestUrl.Append($"orderBy=modified&ts={currentDate}&apikey={_integrationKey.PublicKey}");
+            requestUrl.Append($"orderBy=-modified&limit={parameter.QuantidadePorPagina}&offset={parameter.Pagina}&ts={currentDate}&apikey={_integrationKey.PublicKey}");
             requestUrl.Append($"&hash={IntegrationService.GerarHashCode(currentDate, _integrationKey.PrivateKey, _integrationKey.PublicKey)}");
 
             var response = await _httpClient.GetFromJsonAsync<RootResponseEvento>(requestUrl.ToString());

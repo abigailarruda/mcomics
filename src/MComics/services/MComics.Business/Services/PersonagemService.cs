@@ -21,7 +21,7 @@ namespace MComics.Business.Services
         private readonly IPersonagemAdapter _personagemAdapter;
         private readonly IIntegrationKey _integrationKey;
         private readonly string currentDate = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
-
+        private const string defautUrl = "image_not_available";
         public PersonagemService(IIntegrationModel integrationModel, HttpClient httpClient, IPersonagemAdapter personagemAdapter,
             IIntegrationKey integrationKey)
         {
@@ -49,17 +49,18 @@ namespace MComics.Business.Services
 
             if(!string.IsNullOrEmpty(parameter.Nome)) requestUrl.Append($"nameStartsWith={parameter.Nome}&");
 
-            requestUrl.Append($"orderBy=modified&ts={currentDate}&apikey={_integrationKey.PublicKey}");
+            requestUrl.Append($"orderBy=-modified&limit={parameter.QuantidadePorPagina}&offset={parameter.Pagina}&ts={currentDate}&apikey={_integrationKey.PublicKey}");
             requestUrl.Append($"&hash={IntegrationService.GerarHashCode(currentDate, _integrationKey.PrivateKey, _integrationKey.PublicKey)}");
 
             var response = await _httpClient.GetFromJsonAsync<RootResponsePersonagem>
                 (requestUrl.ToString());
 
             var result = new List<Personagem>();
-            foreach (var personagem in response.data.results)
+
+            foreach (var personagem in response.data.results.Where(x => !x.thumbnail.path.Contains(defautUrl)))
             {
                 result.Add(_personagemAdapter.CreateEntity(personagem));
-            }
+            }           
 
             return result;
         }

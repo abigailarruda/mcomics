@@ -34,10 +34,10 @@ namespace MComics.API.Controllers
             return CustomResponse(result);
         }
 
-        [HttpGet("BuscarListaPersonagens")]
-        public async Task<IActionResult> BuscarListaQuadrinhos(string nome)
+        [HttpGet("BuscarListaPersonagens{pagina}")]
+        public async Task<IActionResult> BuscarListaQuadrinhos(int pagina, string nome)
         {
-            var filtro = new FilterBase(nome, 0);
+            var filtro = new FilterBase(nome, 0,pagina);
             var result = await _personagemApplication.BuscarLista(filtro);
 
             if (result == null)

@@ -20,7 +20,7 @@ namespace MComics.Business.Adapter
                 Titulo = responseModel.title,
                 Descricao = responseModel.description,
                 Miniatura = responseModel.thumbnail.path,
-                NumeroDaEdicao = responseModel.issueNumber,
+                NumeroDaEdicao = (int)responseModel.issueNumber,
                 Imagens = responseModel.images.Select(img => img.path).ToList(),
                 Personagens = AdapterService.MontaListaEntidades(responseModel.characters),
                 Eventos = AdapterService.MontaListaEntidades(responseModel.events),

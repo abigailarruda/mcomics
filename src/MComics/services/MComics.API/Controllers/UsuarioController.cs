@@ -16,13 +16,13 @@ using Microsoft.IdentityModel.Tokens;
 namespace MComics.API.Controllers
 {
     [Route("api/identidade")]
-    public class AuthController : MainController
+    public class UsuarioController : MainController
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly AppSettings _appSettings;
 
-        public AuthController(SignInManager<IdentityUser> signInManager, 
+        public UsuarioController(SignInManager<IdentityUser> signInManager, 
                               UserManager<IdentityUser> userManager,
                               IOptions<AppSettings> appSettings)
         {

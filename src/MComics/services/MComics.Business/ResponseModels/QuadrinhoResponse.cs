@@ -22,7 +22,7 @@ namespace MComics.Business.ResponseModels
         public int digitalId { get; set; }
         public string title { get; set; }
         public string description { get; set; }
-        public int issueNumber { get; set; }
+        public double issueNumber { get; set; }
         public GenericResult series { get; set; }
         public ImagesResult thumbnail { get; set; }
         public List<ImagesResult> images { get; set; }

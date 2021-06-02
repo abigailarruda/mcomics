@@ -3,7 +3,6 @@ C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.API\o
 C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.API\obj\Debug\net5.0\MComics.API.AssemblyInfoInputs.cache
 C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.API\obj\Debug\net5.0\MComics.API.AssemblyInfo.cs
 C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.API\obj\Debug\net5.0\MComics.API.csproj.CoreCompileInputs.cache
-C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.API\obj\Debug\net5.0\MComics.API.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.API\obj\Debug\net5.0\MComics.API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.API\bin\Debug\net5.0\appsettings.Development.json
 C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.API\bin\Debug\net5.0\appsettings.json

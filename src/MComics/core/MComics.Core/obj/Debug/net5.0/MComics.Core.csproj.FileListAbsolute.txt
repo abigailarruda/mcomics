@@ -9,7 +9,6 @@ C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\core\MComics.Core\obj\
 C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\core\MComics.Core\obj\Debug\net5.0\MComics.Core.dll
 C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\core\MComics.Core\obj\Debug\net5.0\ref\MComics.Core.dll
 C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\core\MComics.Core\obj\Debug\net5.0\MComics.Core.pdb
-C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\core\MComics.Core\obj\Debug\net5.0\MComics.Core.csprojAssemblyReference.cache
 C:\Users\abigail\Documents\DS-ES-2020-2-MComics\src\MComics\core\MComics.Core\bin\Debug\net5.0\MComics.Core.deps.json
 C:\Users\abigail\Documents\DS-ES-2020-2-MComics\src\MComics\core\MComics.Core\bin\Debug\net5.0\MComics.Core.dll
 C:\Users\abigail\Documents\DS-ES-2020-2-MComics\src\MComics\core\MComics.Core\bin\Debug\net5.0\ref\MComics.Core.dll

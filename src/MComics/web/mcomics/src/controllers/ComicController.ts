@@ -4,7 +4,7 @@ import { api } from "../services/api";
 
 export default class ComicController {
   static async getAllComics() {
-    const { data } = await api.get("/api/quadrinho/BuscarListaQuadrinhos");
+    const { data } = await api.get("/api/quadrinho/BuscarListaQuadrinhos3");
 
     const comics: Comic[] = [];
 
