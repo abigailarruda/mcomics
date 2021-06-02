@@ -21,8 +21,8 @@ const Header: React.FC = () => {
       </p>
 
       <button className="call-to-action">
-        <Link to={true ? "/profile" : "/sign-up"}>
-          <span>{true ? "Track now" : "Get started"}</span>
+        <Link to={false ? "/profile" : "/signup"}>
+          <span>{false ? "Track now" : "Get started"}</span>
           <ArrowRight color="#ffffff" size="1rem" />
         </Link>
       </button>

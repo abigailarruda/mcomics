@@ -37,23 +37,3 @@
     padding: 4rem 2.5rem;
   }
 }
-
-.progress {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  position: relative;
-
-  width: 30%;
-
-  margin-bottom: 2rem;
-
-  @media (max-width: $md) {
-    width: 50%;
-  }
-
-  @media (max-width: $md) {
-    width: 70%;
-  }
-}

@@ -44,13 +44,15 @@ const Navbar: React.FC = () => {
           size={"small"}
           trigger={"mouseenter"}
         >
-          <button>
-            {true ? (
-              <LogOut color="#d3dce6" size="1rem" />
-            ) : (
-              <User color="#d3dce6" size="1rem" />
-            )}
-          </button>
+          <Link to={true ? "/" : "/signin"}>
+            <button>
+              {true ? (
+                <LogOut color="#d3dce6" size="1rem" />
+              ) : (
+                <User color="#d3dce6" size="1rem" />
+              )}
+            </button>
+          </Link>
         </Tooltip>
 
         {true ? (
