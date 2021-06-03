@@ -72,7 +72,9 @@ namespace MComics.API.Controllers
 
             if (result.Succeeded)
             {
-                return CustomResponse(await GerarJwt(usuarioLogin.Email));
+                var resultUser = await GerarJwt(usuarioLogin.Email);
+                resultUser.UsuarioToken.URL = await _usuarioApplication.BuscarImagemUsuario(new Guid(resultUser.UsuarioToken.Id));
+                return CustomResponse(resultUser);
             }
 
             if (result.IsLockedOut)

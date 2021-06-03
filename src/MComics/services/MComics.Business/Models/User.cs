@@ -39,6 +39,7 @@ namespace MComics.Business.Models
     {
         public string Id { get; set; }
         public string Email { get; set; }
+        public string URL { get; set; }
         public IEnumerable<UsuarioClaim> Claims { get; set; }
     }
 

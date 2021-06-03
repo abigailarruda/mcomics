@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\services\\MComics.API\\MComics.API.csproj": {}
+    "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\services\\MComics.API\\MComics.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\core\\MComics.Core\\MComics.Core.csproj": {
+    "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\core\\MComics.Core\\MComics.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\core\\MComics.Core\\MComics.Core.csproj",
+        "projectUniqueName": "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\core\\MComics.Core\\MComics.Core.csproj",
         "projectName": "MComics.Core",
-        "projectPath": "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\core\\MComics.Core\\MComics.Core.csproj",
-        "packagesPath": "C:\\Users\\abigail\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\core\\MComics.Core\\obj\\",
+        "projectPath": "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\core\\MComics.Core\\MComics.Core.csproj",
+        "packagesPath": "C:\\Users\\JACOB\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\core\\MComics.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\abigail\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\JACOB\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -72,24 +72,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\services\\MComics.API\\MComics.API.csproj": {
+    "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\services\\MComics.API\\MComics.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\services\\MComics.API\\MComics.API.csproj",
+        "projectUniqueName": "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\services\\MComics.API\\MComics.API.csproj",
         "projectName": "MComics.API",
-        "projectPath": "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\services\\MComics.API\\MComics.API.csproj",
-        "packagesPath": "C:\\Users\\abigail\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\services\\MComics.API\\obj\\",
+        "projectPath": "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\services\\MComics.API\\MComics.API.csproj",
+        "packagesPath": "C:\\Users\\JACOB\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\services\\MComics.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\abigail\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\JACOB\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -104,14 +104,14 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\core\\MComics.Core\\MComics.Core.csproj": {
-                "projectPath": "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\core\\MComics.Core\\MComics.Core.csproj"
+              "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\core\\MComics.Core\\MComics.Core.csproj": {
+                "projectPath": "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\core\\MComics.Core\\MComics.Core.csproj"
               },
-              "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\services\\MComics.Business\\MComics.Business.csproj": {
-                "projectPath": "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\services\\MComics.Business\\MComics.Business.csproj"
+              "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\services\\MComics.Business\\MComics.Business.csproj": {
+                "projectPath": "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\services\\MComics.Business\\MComics.Business.csproj"
               },
-              "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\services\\MComics.Data\\MComics.Data.csproj": {
-                "projectPath": "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\services\\MComics.Data\\MComics.Data.csproj"
+              "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\services\\MComics.Data\\MComics.Data.csproj": {
+                "projectPath": "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\services\\MComics.Data\\MComics.Data.csproj"
               }
             }
           }
@@ -197,24 +197,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\services\\MComics.Business\\MComics.Business.csproj": {
+    "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\services\\MComics.Business\\MComics.Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\services\\MComics.Business\\MComics.Business.csproj",
+        "projectUniqueName": "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\services\\MComics.Business\\MComics.Business.csproj",
         "projectName": "MComics.Business",
-        "projectPath": "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\services\\MComics.Business\\MComics.Business.csproj",
-        "packagesPath": "C:\\Users\\abigail\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\services\\MComics.Business\\obj\\",
+        "projectPath": "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\services\\MComics.Business\\MComics.Business.csproj",
+        "packagesPath": "C:\\Users\\JACOB\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\services\\MComics.Business\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\abigail\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\JACOB\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -229,11 +229,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\core\\MComics.Core\\MComics.Core.csproj": {
-                "projectPath": "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\core\\MComics.Core\\MComics.Core.csproj"
+              "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\core\\MComics.Core\\MComics.Core.csproj": {
+                "projectPath": "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\core\\MComics.Core\\MComics.Core.csproj"
               },
-              "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\services\\MComics.Data\\MComics.Data.csproj": {
-                "projectPath": "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\services\\MComics.Data\\MComics.Data.csproj"
+              "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\services\\MComics.Data\\MComics.Data.csproj": {
+                "projectPath": "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\services\\MComics.Data\\MComics.Data.csproj"
               }
             }
           }
@@ -262,24 +262,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\services\\MComics.Data\\MComics.Data.csproj": {
+    "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\services\\MComics.Data\\MComics.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\services\\MComics.Data\\MComics.Data.csproj",
+        "projectUniqueName": "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\services\\MComics.Data\\MComics.Data.csproj",
         "projectName": "MComics.Data",
-        "projectPath": "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\services\\MComics.Data\\MComics.Data.csproj",
-        "packagesPath": "C:\\Users\\abigail\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\services\\MComics.Data\\obj\\",
+        "projectPath": "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\services\\MComics.Data\\MComics.Data.csproj",
+        "packagesPath": "C:\\Users\\JACOB\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\services\\MComics.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\abigail\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\JACOB\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -294,8 +294,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\core\\MComics.Core\\MComics.Core.csproj": {
-                "projectPath": "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\core\\MComics.Core\\MComics.Core.csproj"
+              "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\core\\MComics.Core\\MComics.Core.csproj": {
+                "projectPath": "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\core\\MComics.Core\\MComics.Core.csproj"
               }
             }
           }
@@ -352,7 +352,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }
