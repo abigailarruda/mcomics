@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\core\MComics.Core\MComics.Core.csproj" />
+    <ProjectReference Include="..\MComics.Data\MComics.Data.csproj" />
   </ItemGroup>
 
 </Project>

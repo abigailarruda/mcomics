@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using MComics.Data.DbContexts;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -11,13 +14,16 @@ namespace MComics.API.Configuration
 {
     public static class ApiConfig
     {
-        public static IServiceCollection ApiConfiguration(this IServiceCollection services)
+        public static IServiceCollection ApiConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddControllers();
 
             services.AddControllersWithViews()
             .AddNewtonsoftJson(options =>
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            services.AddDbContext<UsuarioContext>(options =>
+            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
             services.AddCors(options =>
             {

@@ -5,9 +5,11 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using MComics.Business.Application.Interfaces;
 using MComics.Business.Models;
 using MComics.Core.Identidade;
 using MComics.Core.Services;
+using MComics.Data.Mapping.ModelsData;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -21,14 +23,16 @@ namespace MComics.API.Controllers
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly AppSettings _appSettings;
-
-        public UsuarioController(SignInManager<IdentityUser> signInManager, 
+        private readonly IUsuarioApplication _usuarioApplication;
+        public UsuarioController(SignInManager<IdentityUser> signInManager,
                               UserManager<IdentityUser> userManager,
-                              IOptions<AppSettings> appSettings)
+                              IOptions<AppSettings> appSettings, 
+                              IUsuarioApplication usuarioApplication)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _appSettings = appSettings.Value;
+            _usuarioApplication = usuarioApplication;
         }
 
         [HttpPost("CriarNovaConta")]
@@ -79,6 +83,35 @@ namespace MComics.API.Controllers
 
             AdicionarErro("Usuário ou Senha incorretos");
             return CustomResponse();
+        }
+
+        [HttpGet("BuscarImagemUsuario{id}")]
+        public async Task<IActionResult> BuscarImagemUsuario(Guid id)
+        {
+            var result = await _usuarioApplication.BuscarImagemUsuario(id);
+
+            if (result == null)
+            {
+                AdicionaErroBase();
+                return CustomResponse();
+            }
+
+            return CustomResponse(result);
+        }
+
+
+        [HttpPost("InserirImagemUsuario")]
+        public async Task<IActionResult> InserirImagemUsuario(ImageUser imageUser)
+        {
+            var result = await _usuarioApplication.InserirImagemUsuario(imageUser.URL, imageUser.Id);
+
+            if (result == null)
+            {
+                AdicionaErroBase();
+                return CustomResponse();
+            }
+
+            return CustomResponse(result);
         }
 
         private async Task<UsuarioRespostaLogin> GerarJwt(string email)

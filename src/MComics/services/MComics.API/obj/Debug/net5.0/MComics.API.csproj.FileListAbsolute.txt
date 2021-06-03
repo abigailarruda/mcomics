@@ -161,3 +161,4 @@ C:\Users\abigail\Documents\DS-ES-2020-2-MComics\src\MComics\services\MComics.API
 C:\Users\abigail\Documents\DS-ES-2020-2-MComics\src\MComics\services\MComics.API\obj\Debug\net5.0\ref\MComics.API.dll
 C:\Users\abigail\Documents\DS-ES-2020-2-MComics\src\MComics\services\MComics.API\obj\Debug\net5.0\MComics.API.pdb
 C:\Users\abigail\Documents\DS-ES-2020-2-MComics\src\MComics\services\MComics.API\obj\Debug\net5.0\MComics.API.genruntimeconfig.cache
+C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.API\obj\Debug\net5.0\MComics.API.MvcApplicationPartsAssemblyInfo.cs

@@ -30,7 +30,7 @@ namespace MComics.Business.Application
 
         public void Dispose()
         {
-            _personagemService.Dispose();
+            this._personagemService.Dispose();
         }
     }
 }

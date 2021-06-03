@@ -25,7 +25,7 @@ namespace MComics.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.IdentityConfiguration(Configuration);
-            services.ApiConfiguration();
+            services.ApiConfiguration(Configuration);
             services.SwaggerConfiguration();
             services.IntegrationConfiguration(Configuration);
             services.RegisterDependenciesServices(Configuration);

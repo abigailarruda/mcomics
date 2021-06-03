@@ -2269,7 +2269,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
-          "MComics.Core": "1.0.0"
+          "MComics.Core": "1.0.0",
+          "MComics.Data": "1.0.0"
         },
         "compile": {
           "bin/placeholder/MComics.Business.dll": {}
@@ -2299,7 +2300,10 @@
         "dependencies": {
           "MComics.Core": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.6",
-          "Microsoft.EntityFrameworkCore": "5.0.6"
+          "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "5.0.6",
+          "Microsoft.EntityFrameworkCore": "5.0.6",
+          "Microsoft.EntityFrameworkCore.Abstractions": "5.0.6",
+          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.6"
         },
         "compile": {
           "bin/placeholder/MComics.Data.dll": {}
@@ -7548,6 +7552,7 @@
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 5.0.6",
       "Microsoft.EntityFrameworkCore >= 5.0.6",
       "Microsoft.EntityFrameworkCore.Abstractions >= 5.0.6",
+      "Microsoft.EntityFrameworkCore.Design >= 5.0.6",
       "Microsoft.EntityFrameworkCore.Relational >= 5.0.6",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.6",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.6",
@@ -7556,23 +7561,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\abigail\\.nuget\\packages\\": {},
+    "C:\\Users\\JACOB\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\services\\MComics.API\\MComics.API.csproj",
+      "projectUniqueName": "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\services\\MComics.API\\MComics.API.csproj",
       "projectName": "MComics.API",
-      "projectPath": "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\services\\MComics.API\\MComics.API.csproj",
-      "packagesPath": "C:\\Users\\abigail\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\services\\MComics.API\\obj\\",
+      "projectPath": "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\services\\MComics.API\\MComics.API.csproj",
+      "packagesPath": "C:\\Users\\JACOB\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\services\\MComics.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\abigail\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\JACOB\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -7587,14 +7592,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\core\\MComics.Core\\MComics.Core.csproj": {
-              "projectPath": "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\core\\MComics.Core\\MComics.Core.csproj"
+            "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\core\\MComics.Core\\MComics.Core.csproj": {
+              "projectPath": "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\core\\MComics.Core\\MComics.Core.csproj"
             },
-            "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\services\\MComics.Business\\MComics.Business.csproj": {
-              "projectPath": "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\services\\MComics.Business\\MComics.Business.csproj"
+            "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\services\\MComics.Business\\MComics.Business.csproj": {
+              "projectPath": "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\services\\MComics.Business\\MComics.Business.csproj"
             },
-            "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\services\\MComics.Data\\MComics.Data.csproj": {
-              "projectPath": "C:\\Users\\abigail\\Documents\\DS-ES-2020-2-MComics\\src\\MComics\\services\\MComics.Data\\MComics.Data.csproj"
+            "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\services\\MComics.Data\\MComics.Data.csproj": {
+              "projectPath": "C:\\Users\\JACOB\\Documents\\repositorios\\MComics\\src\\MComics\\services\\MComics.Data\\MComics.Data.csproj"
             }
           }
         }
@@ -7630,6 +7635,12 @@
             "version": "[5.0.6, )"
           },
           "Microsoft.EntityFrameworkCore.Abstractions": {
+            "target": "Package",
+            "version": "[5.0.6, )"
+          },
+          "Microsoft.EntityFrameworkCore.Design": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
             "target": "Package",
             "version": "[5.0.6, )"
           },
@@ -7674,7 +7685,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

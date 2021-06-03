@@ -33,7 +33,7 @@ namespace MComics.Business.Services
 
         public async Task<Personagem> BuscarEntidade(FilterBase parameter)
         {
-            StringBuilder requestUrl = new StringBuilder();
+            StringBuilder requestUrl = new();
             requestUrl.Append($"{_integrationModel.RequestUrl}/characters/{parameter.Id}?&");
             requestUrl.Append($"&ts={currentDate}&apikey={_integrationKey.PublicKey}");
             requestUrl.Append($"&hash={IntegrationService.GerarHashCode(currentDate, _integrationKey.PrivateKey, _integrationKey.PublicKey)}");
@@ -44,7 +44,7 @@ namespace MComics.Business.Services
 
         public async Task<IEnumerable<Personagem>> BuscarLista(FilterBase parameter)
         {
-            StringBuilder requestUrl = new StringBuilder();
+            StringBuilder requestUrl = new();
             requestUrl.Append($"{_integrationModel.RequestUrl}/characters?");
 
             if(!string.IsNullOrEmpty(parameter.Nome)) requestUrl.Append($"nameStartsWith={parameter.Nome}&");
@@ -67,7 +67,8 @@ namespace MComics.Business.Services
 
         public void Dispose()
         {
-            _httpClient.Dispose();
+            this._httpClient.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 }
