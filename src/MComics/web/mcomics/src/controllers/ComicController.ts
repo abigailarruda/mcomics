@@ -7,23 +7,8 @@ export default class ComicController {
     const { data } = await api.get("/api/quadrinho/BuscarListaQuadrinhos1");
 
     const comics: Comic[] = [];
-    // characters: Character[] = [];
 
     for (const d of data) {
-      /* for (const c of d.personagens) {
-        const { data } = await api.get(
-          `/api/personagens/BuscarPersonagem${c.id}`
-        );
-         const character = new Character(
-          data.nome,
-          data.descricao,
-          data.imagem,
-          data.quadrinhos,
-          data.eventos
-        );
-        character.setCharacterId(c.id);
-        characters.push(character); 
-      } */
       const comic = new Comic(
         d.titulo,
         d.descricao,
@@ -68,5 +53,24 @@ export default class ComicController {
     }
 
     return comics;
+  }
+
+  static async getComicById(id: number) {
+    const { data } = await api.get(`/api/quadrinho/BuscarQuadrinho${id}`);
+
+    const comic = new Comic(
+      data.titulo,
+      data.descricao,
+      data.imagens,
+      data.miniatura,
+      data.criadores,
+      data.personagens,
+      data.eventos,
+      data.numeroDaEdicao
+    );
+
+    comic.setComicId(data.id);
+
+    return comic;
   }
 }
