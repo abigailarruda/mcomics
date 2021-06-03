@@ -3,8 +3,10 @@ import Event from "../models/Event";
 import { api } from "../services/api";
 
 export default class EventController {
-  static async getAllEvents() {
-    const { data } = await api.get("/api/personagens/BuscarListaEventos1");
+  static async getAllEvents(page: number) {
+    const { data } = await api.get(
+      `/api/personagens/BuscarListaEventos${page}`
+    );
 
     const events: Event[] = [];
 
@@ -25,10 +27,13 @@ export default class EventController {
     return events;
   }
 
-  static async getEventsByName(name: string) {
-    const { data } = await api.get("/api/personagens/BuscarListaEventos1", {
-      params: { nome: name },
-    });
+  static async getEventsByName(name: string, page: number) {
+    const { data } = await api.get(
+      `/api/personagens/BuscarListaEventos${page}`,
+      {
+        params: { nome: name },
+      }
+    );
 
     const events: Event[] = [];
 

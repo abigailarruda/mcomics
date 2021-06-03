@@ -1,7 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import Comic from "../../models/Comic";
 import Character from "../../models/Character";
+import Event from "../../models/Event";
 
 import { useLocation } from "react-router-dom";
 
@@ -9,6 +10,7 @@ import { trackPromise, usePromiseTracker } from "react-promise-tracker";
 
 import { ComicContext } from "../../contexts/ComicContext";
 import { CharacterContext } from "../../contexts/CharacterContext";
+import { EventContext } from "../../contexts/EventContext";
 
 import { v4 as uuidv4 } from "uuid";
 
@@ -19,32 +21,123 @@ import Loader from "../../components/Loader";
 
 import "./styles.scss";
 
-import { EventContext } from "../../contexts/EventContext";
-import Event from "../../models/Event";
-
 function Search() {
-  const { getEventsByName, searchedEvents } = useContext(EventContext);
+  const { getEventsByName } = useContext(EventContext);
+  const { getComicsByName } = useContext(ComicContext);
+  const { getCharactersByName } = useContext(CharacterContext);
 
-  const { getComicsByName, searchedComics } = useContext(ComicContext);
+  const [searchedComics, setSearchedComics] = useState<Comic[]>([]);
+  const [searchedCharacters, setSearchedCharacters] = useState<Character[]>([]);
+  const [searchedEvents, setSearchedEvents] = useState<Event[]>([]);
 
-  const { getCharactersByName, searchedCharacters } =
-    useContext(CharacterContext);
+  const [currentComicsPage, setCurrentComicsPage] = useState(1);
+  const [currentCharactersPage, setCurrentCharactersPage] = useState(1);
+  const [currentEventsPage, setCurrentEventsPage] = useState(1);
 
   const location = useLocation();
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search).get("q");
 
-    trackPromise(getCharactersByName(searchParams || ""));
+    async function getComics() {
+      setSearchedComics(
+        await trackPromise(
+          getComicsByName(searchParams || "", 1),
+          "searchedComics"
+        )
+      );
+    }
 
-    trackPromise(getComicsByName(searchParams || ""));
+    getComics();
 
-    trackPromise(getEventsByName(searchParams || ""));
+    async function getCharacters() {
+      setSearchedCharacters(
+        await trackPromise(
+          getCharactersByName(searchParams || "", 1),
+          "searchedCharacters"
+        )
+      );
+    }
+
+    getCharacters();
+
+    async function getEvents() {
+      setSearchedEvents(
+        await trackPromise(
+          getEventsByName(searchParams || "", 1),
+          "searchedEvents"
+        )
+      );
+    }
+
+    getEvents();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.search]);
 
-  const { promiseInProgress } = usePromiseTracker();
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search).get("q");
+
+    async function getComics() {
+      setSearchedComics([
+        ...searchedComics,
+        ...(await trackPromise(
+          getComicsByName(searchParams || "", currentComicsPage),
+          "searchedComics"
+        )),
+      ]);
+    }
+
+    getComics();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentComicsPage]);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search).get("q");
+
+    async function getCharacters() {
+      setSearchedCharacters([
+        ...searchedCharacters,
+        ...(await trackPromise(
+          getCharactersByName(searchParams || "", currentCharactersPage),
+          "searchedCharacters"
+        )),
+      ]);
+    }
+
+    getCharacters();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentCharactersPage]);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search).get("q");
+
+    async function getEvents() {
+      setSearchedEvents([
+        ...searchedEvents,
+        ...(await trackPromise(
+          getEventsByName(searchParams || "", currentEventsPage),
+          "searchedEvents"
+        )),
+      ]);
+    }
+
+    getEvents();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentEventsPage]);
+
+  const searchedComicsPromise = usePromiseTracker({ area: "searchedComics" });
+
+  const searchedCharactersPromise = usePromiseTracker({
+    area: "searchedCharacters",
+  });
+
+  const searchedEventsPromise = usePromiseTracker({
+    area: "searchedEvents",
+  });
 
   return (
     <>
@@ -56,13 +149,12 @@ function Search() {
 
           <hr />
 
-          <Loader />
-
-          {!searchedComics.length && !promiseInProgress && (
-            <p className="not-found">
-              It seems we can’t find any results based on your search.
-            </p>
-          )}
+          {!searchedComics.length &&
+            !searchedComicsPromise.promiseInProgress && (
+              <p className="not-found">
+                It seems we can’t find any results based on your search.
+              </p>
+            )}
 
           <div className="comics">
             {searchedComics &&
@@ -78,6 +170,23 @@ function Search() {
                 );
               })}
           </div>
+
+          <Loader area="searchedComics" />
+
+          {searchedComics.length > 0 &&
+            !searchedComicsPromise.promiseInProgress && (
+              <div className="button-show-more">
+                <button
+                  disabled={searchedComics.length < 24}
+                  className="show-more"
+                  onClick={() => {
+                    setCurrentComicsPage(currentComicsPage + 1);
+                  }}
+                >
+                  Show more
+                </button>
+              </div>
+            )}
         </section>
 
         <section className="events-container">
@@ -85,13 +194,12 @@ function Search() {
 
           <hr />
 
-          {!searchedEvents.length && !promiseInProgress && (
-            <p className="not-found">
-              It seems we can’t find any results based on your search.
-            </p>
-          )}
-
-          <Loader />
+          {!searchedEvents.length &&
+            !searchedEventsPromise.promiseInProgress && (
+              <p className="not-found">
+                It seems we can’t find any results based on your search.
+              </p>
+            )}
 
           <div className="events">
             {searchedEvents &&
@@ -107,6 +215,23 @@ function Search() {
                 );
               })}
           </div>
+
+          <Loader area="searchedEvents" />
+
+          {searchedEvents.length > 0 &&
+            !searchedEventsPromise.promiseInProgress && (
+              <div className="button-show-more">
+                <button
+                  disabled={searchedEvents.length < 24}
+                  className="show-more"
+                  onClick={() => {
+                    setCurrentEventsPage(currentEventsPage + 1);
+                  }}
+                >
+                  Show more
+                </button>
+              </div>
+            )}
         </section>
 
         <section className="characters-container">
@@ -114,13 +239,12 @@ function Search() {
 
           <hr />
 
-          <Loader />
-
-          {!searchedCharacters.length && !promiseInProgress && (
-            <p className="not-found">
-              It seems we can’t find any results based on your search.
-            </p>
-          )}
+          {!searchedCharacters.length &&
+            !searchedCharactersPromise.promiseInProgress && (
+              <p className="not-found">
+                It seems we can’t find any results based on your search.
+              </p>
+            )}
 
           <div className="characters">
             {searchedCharacters &&
@@ -136,6 +260,23 @@ function Search() {
                 );
               })}
           </div>
+
+          <Loader area="searchedCharacters" />
+
+          {searchedCharacters.length > 0 &&
+            !searchedCharactersPromise.promiseInProgress && (
+              <div className="button-show-more">
+                <button
+                  disabled={searchedCharacters.length < 24}
+                  className="show-more"
+                  onClick={() => {
+                    setCurrentCharactersPage(currentCharactersPage + 1);
+                  }}
+                >
+                  Show more
+                </button>
+              </div>
+            )}
         </section>
       </div>
 

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import Comic from "../../models/Comic";
 import Character from "../../models/Character";
@@ -12,13 +12,45 @@ import Navbar from "../../components/Navbar";
 import Header from "../../components/Header";
 import Card from "../../components/Card";
 import Footer from "../../components/Footer";
-
-import "./styles.scss";
 import Loader from "../../components/Loader";
 
+import { trackPromise, usePromiseTracker } from "react-promise-tracker";
+
+import "./styles.scss";
+
 function Home() {
-  const { mostPopular } = useContext(ComicContext);
-  const { randomCharacters } = useContext(CharacterContext);
+  const { getAllComics } = useContext(ComicContext);
+  const { getRandomCharacters } = useContext(CharacterContext);
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const [comics, setComics] = useState<Comic[]>([]);
+  const [characters, setCharacters] = useState<Character[]>([]);
+
+  useEffect(() => {
+    async function getComics() {
+      setComics([
+        ...comics,
+        ...(await trackPromise(getAllComics(currentPage), "comics")),
+      ]);
+    }
+
+    getComics();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPage]);
+
+  useEffect(() => {
+    async function getCharacters() {
+      setCharacters(await trackPromise(getRandomCharacters(1), "characters"));
+    }
+
+    getCharacters();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const comicsPromise = usePromiseTracker({ area: "comics" });
 
   return (
     <>
@@ -32,9 +64,8 @@ function Home() {
 
           <hr />
 
-          <Loader />
           <div className="most-popular">
-            {mostPopular.map((comic: Comic) => {
+            {comics.map((comic: Comic) => {
               return (
                 <Card
                   key={uuidv4()}
@@ -46,6 +77,22 @@ function Home() {
               );
             })}
           </div>
+
+          <Loader area={"comics"} />
+
+          {comics.length > 0 && !comicsPromise.promiseInProgress && (
+            <div className="button-show-more">
+              <button
+                disabled={comics.length < 24}
+                className="show-more"
+                onClick={() => {
+                  setCurrentPage(currentPage + 1);
+                }}
+              >
+                Show more
+              </button>
+            </div>
+          )}
         </section>
 
         <section className="random-container">
@@ -53,9 +100,8 @@ function Home() {
 
           <hr />
 
-          <Loader />
           <div className="random-characters">
-            {randomCharacters.map((character: Character) => {
+            {characters.map((character: Character) => {
               return (
                 <Card
                   key={uuidv4()}
@@ -67,6 +113,8 @@ function Home() {
               );
             })}
           </div>
+
+          <Loader area="characters" />
         </section>
       </div>
 

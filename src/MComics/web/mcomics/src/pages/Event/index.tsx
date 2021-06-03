@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { Link, useLocation } from "react-router-dom";
 
@@ -7,31 +7,43 @@ import { EventContext } from "../../contexts/EventContext";
 import { v4 as uuidv4 } from "uuid";
 
 import Loader from "../../components/Loader";
-
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
 import { trackPromise, usePromiseTracker } from "react-promise-tracker";
 
 import "./styles.scss";
+import Event from "../../models/Event";
 
-function Event() {
-  const { event, getEventById } = useContext(EventContext);
+function EventPage() {
+  const { getEventById } = useContext(EventContext);
+
+  const [event, setEvent] = useState<Event>(new Event("", "", "", [], []));
 
   const location = useLocation();
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search).get("id");
-    trackPromise(getEventById(Number(searchParams) || 0));
+
+    async function getEvent() {
+      setEvent(
+        await trackPromise(
+          getEventById(Number(searchParams) || 0),
+          "selectedEvent"
+        )
+      );
+    }
+
+    getEvent();
   }, [getEventById, location.search]);
 
-  const { promiseInProgress } = usePromiseTracker();
+  const { promiseInProgress } = usePromiseTracker({ area: "selectedEvent" });
 
   return (
     <>
       <Navbar />
 
-      <Loader />
+      <Loader area="selectedEvent" />
 
       {!promiseInProgress && (
         <>
@@ -98,4 +110,4 @@ function Event() {
   );
 }
 
-export default Event;
+export default EventPage;

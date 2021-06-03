@@ -3,8 +3,10 @@ import Character from "../models/Character";
 import { api } from "../services/api";
 
 export default class CharacterController {
-  static async getAllCharacters() {
-    const { data } = await api.get("/api/personagens/BuscarListaPersonagens1");
+  static async getAllCharacters(page: number) {
+    const { data } = await api.get(
+      `/api/personagens/BuscarListaPersonagens${page}`
+    );
 
     const characters: Character[] = [];
 
@@ -25,10 +27,13 @@ export default class CharacterController {
     return characters;
   }
 
-  static async getCharactersByName(name: string) {
-    const { data } = await api.get("/api/personagens/BuscarListaPersonagens1", {
-      params: { nome: name },
-    });
+  static async getCharactersByName(name: string, page: number) {
+    const { data } = await api.get(
+      `/api/personagens/BuscarListaPersonagens${page}`,
+      {
+        params: { nome: name },
+      }
+    );
 
     const characters: Character[] = [];
 

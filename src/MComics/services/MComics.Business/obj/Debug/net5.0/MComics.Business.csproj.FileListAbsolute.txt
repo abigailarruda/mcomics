@@ -30,3 +30,5 @@ C:\Users\abigail\Documents\DS-ES-2020-2-MComics\src\MComics\services\MComics.Bus
 C:\Users\abigail\Documents\DS-ES-2020-2-MComics\src\MComics\services\MComics.Business\obj\Debug\net5.0\MComics.Business.pdb
 C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.Business\bin\Debug\net5.0\MComics.Data.dll
 C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.Business\bin\Debug\net5.0\MComics.Data.pdb
+C:\Users\abigail\Documents\DS-ES-2020-2-MComics\src\MComics\services\MComics.Business\bin\Debug\net5.0\MComics.Data.dll
+C:\Users\abigail\Documents\DS-ES-2020-2-MComics\src\MComics\services\MComics.Business\bin\Debug\net5.0\MComics.Data.pdb

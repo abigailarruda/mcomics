@@ -19,10 +19,10 @@ import "../styles.scss";
 const SecondStep: React.FC<StepComponentProps> = (
   props: StepComponentProps
 ) => {
-  const { getCharactersByName, searchedCharacters } =
-    useContext(CharacterContext);
+  const { getCharactersByName } = useContext(CharacterContext);
 
   const [selectedItem, setSelectedItem] = useState(0);
+  const [searchedCharacters, setSearchedCharacters] = useState<Character[]>([]);
 
   function onValueChange(event: any) {
     const { value } = event.target;
@@ -36,13 +36,18 @@ const SecondStep: React.FC<StepComponentProps> = (
     setSearch(value);
   }
 
-  function searchCharacters() {
-    trackPromise(getCharactersByName(search));
+  async function searchCharacters() {
+    setSearchedCharacters(
+      await trackPromise(
+        getCharactersByName(search || "", 1),
+        "characterImages"
+      )
+    );
   }
 
   useEffect(() => {}, [searchedCharacters]);
 
-  const { promiseInProgress } = usePromiseTracker();
+  const { promiseInProgress } = usePromiseTracker({ area: "characterImages" });
 
   return (
     <div className="step-container">
@@ -64,16 +69,11 @@ const SecondStep: React.FC<StepComponentProps> = (
         </button>
       </div>
 
-      <Loader />
-
-      {!searchedCharacters.length && !promiseInProgress && (
-        <p className="not-found">
-          It seems we can’t find any results based on your search.
-        </p>
-      )}
+      <Loader area="characterImages" />
 
       <div className="icons">
-        {searchedCharacters &&
+        {!promiseInProgress &&
+          searchedCharacters &&
           searchedCharacters.map((character: Character) => {
             return (
               <label key={uuidv4()} className="character-card">

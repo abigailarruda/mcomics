@@ -6,8 +6,12 @@ import ReactLoading from "react-loading";
 
 import "./styles.scss";
 
-const Loader: React.FC = () => {
-  const { promiseInProgress } = usePromiseTracker();
+interface LoaderProps {
+  area: string;
+}
+
+const Loader: React.FC<LoaderProps> = (props) => {
+  const { promiseInProgress } = usePromiseTracker({ area: props.area });
 
   return (
     <>

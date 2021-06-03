@@ -1,14 +1,12 @@
-import React, { createContext, useState, ReactNode } from "react";
+import React, { createContext, ReactNode } from "react";
 
 import EventController from "../controllers/EventController";
 
 import Event from "../models/Event";
 
 interface EventContextData {
-  event: Event | null;
-  searchedEvents: Event[];
-  getEventsByName(name: string): Promise<unknown>;
-  getEventById(id: number): Promise<unknown>;
+  getEventsByName(name: string, page: number): Promise<Event[]>;
+  getEventById(id: number): Promise<Event>;
 }
 
 interface EventProviderProps {
@@ -18,22 +16,17 @@ interface EventProviderProps {
 export const EventContext = createContext({} as EventContextData);
 
 export function EventProvider({ children }: EventProviderProps) {
-  const [event, setEvent] = useState<Event | null>(null);
-  const [searchedEvents, setSearchedEvents] = useState<Event[]>([]);
-
-  async function getEventsByName(name: string) {
-    setSearchedEvents([]);
-    setSearchedEvents(await EventController.getEventsByName(name));
+  async function getEventsByName(name: string, page: number) {
+    const searchedEvents = await EventController.getEventsByName(name, page);
+    return searchedEvents;
   }
 
   async function getEventById(id: number) {
-    setEvent(await EventController.getEventById(id));
+    return await EventController.getEventById(id);
   }
 
   return (
-    <EventContext.Provider
-      value={{ event, searchedEvents, getEventsByName, getEventById }}
-    >
+    <EventContext.Provider value={{ getEventsByName, getEventById }}>
       {children}
     </EventContext.Provider>
   );

@@ -31,3 +31,6 @@ C:\Users\abigail\Documents\DS-ES-2020-2-MComics\src\MComics\services\MComics.Dat
 C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.Data\bin\Debug\net5.0\MComics.Data.runtimeconfig.json
 C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.Data\bin\Debug\net5.0\MComics.Data.runtimeconfig.dev.json
 C:\Users\JACOB\Documents\repositorios\MComics\src\MComics\services\MComics.Data\obj\Debug\net5.0\MComics.Data.genruntimeconfig.cache
+C:\Users\abigail\Documents\DS-ES-2020-2-MComics\src\MComics\services\MComics.Data\bin\Debug\net5.0\MComics.Data.runtimeconfig.json
+C:\Users\abigail\Documents\DS-ES-2020-2-MComics\src\MComics\services\MComics.Data\bin\Debug\net5.0\MComics.Data.runtimeconfig.dev.json
+C:\Users\abigail\Documents\DS-ES-2020-2-MComics\src\MComics\services\MComics.Data\obj\Debug\net5.0\MComics.Data.genruntimeconfig.cache

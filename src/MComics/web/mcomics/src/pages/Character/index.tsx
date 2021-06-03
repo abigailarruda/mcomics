@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { Link, useLocation } from "react-router-dom";
 
@@ -7,31 +7,47 @@ import { CharacterContext } from "../../contexts/CharacterContext";
 import { v4 as uuidv4 } from "uuid";
 
 import Loader from "../../components/Loader";
-
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
 import { trackPromise, usePromiseTracker } from "react-promise-tracker";
 
 import "./styles.scss";
+import Character from "../../models/Character";
 
-function Character() {
-  const { character, getCharacterById } = useContext(CharacterContext);
+function CharacterPage() {
+  const { getCharacterById } = useContext(CharacterContext);
+
+  const [character, setCharacter] = useState<Character>(
+    new Character("", "", "", [], [])
+  );
 
   const location = useLocation();
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search).get("id");
-    trackPromise(getCharacterById(Number(searchParams) || 0));
+
+    async function getCharacter() {
+      setCharacter(
+        await trackPromise(
+          getCharacterById(Number(searchParams) || 0),
+          "selectedCharacter"
+        )
+      );
+    }
+
+    getCharacter();
   }, [getCharacterById, location.search]);
 
-  const { promiseInProgress } = usePromiseTracker();
+  const { promiseInProgress } = usePromiseTracker({
+    area: "selectedCharacter",
+  });
 
   return (
     <>
       <Navbar />
 
-      <Loader />
+      <Loader area="selectedCharacter" />
 
       {!promiseInProgress && (
         <>
@@ -98,4 +114,4 @@ function Character() {
   );
 }
 
-export default Character;
+export default CharacterPage;

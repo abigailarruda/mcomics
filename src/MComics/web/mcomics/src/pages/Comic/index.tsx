@@ -7,7 +7,6 @@ import { ComicContext } from "../../contexts/ComicContext";
 import { v4 as uuidv4 } from "uuid";
 
 import Loader from "../../components/Loader";
-
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
@@ -18,21 +17,37 @@ import { trackPromise, usePromiseTracker } from "react-promise-tracker";
 import { Clock, Eye } from "react-feather";
 
 import "./styles.scss";
+import Comic from "../../models/Comic";
 
-function Comic() {
-  const { comic, getComicById } = useContext(ComicContext);
+function ComicPage() {
+  const { getComicById } = useContext(ComicContext);
 
   const location = useLocation();
 
+  const [comic, setComic] = useState<Comic>(
+    new Comic("", "", [], "", [], [], [], 0)
+  );
+
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search).get("id");
-    trackPromise(getComicById(Number(searchParams) || 0));
+
+    async function getComic() {
+      setComic(
+        await trackPromise(
+          getComicById(Number(searchParams) || 0),
+          "selectedComic"
+        )
+      );
+    }
+
+    getComic();
   }, [getComicById, location.search]);
 
-  const { promiseInProgress } = usePromiseTracker();
+  const { promiseInProgress } = usePromiseTracker({ area: "selectedComic" });
 
   function decideEdition(edition: number) {
     if (edition > 3 && edition < 21) return "th";
+
     switch (edition % 10) {
       case 1:
         return "st";
@@ -55,7 +70,7 @@ function Comic() {
     <>
       <Navbar />
 
-      <Loader />
+      <Loader area="selectedComic" />
 
       {!promiseInProgress && (
         <>
@@ -148,4 +163,4 @@ function Comic() {
   );
 }
 
-export default Comic;
+export default ComicPage;

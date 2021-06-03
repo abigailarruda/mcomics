@@ -3,8 +3,10 @@ import Comic from "../models/Comic";
 import { api } from "../services/api";
 
 export default class ComicController {
-  static async getAllComics() {
-    const { data } = await api.get("/api/quadrinho/BuscarListaQuadrinhos1");
+  static async getAllComics(page: number) {
+    const { data } = await api.get(
+      `/api/quadrinho/BuscarListaQuadrinhos${page}`
+    );
 
     const comics: Comic[] = [];
 
@@ -28,10 +30,13 @@ export default class ComicController {
     return comics;
   }
 
-  static async getComicsByName(name: string) {
-    const { data } = await api.get("/api/quadrinho/BuscarListaQuadrinhos1", {
-      params: { nome: name },
-    });
+  static async getComicsByName(name: string, page: number) {
+    const { data } = await api.get(
+      `/api/quadrinho/BuscarListaQuadrinhos${page}`,
+      {
+        params: { nome: name },
+      }
+    );
 
     const comics: Comic[] = [];
 

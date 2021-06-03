@@ -1,18 +1,15 @@
-import React, { createContext, useState, ReactNode, useEffect } from "react";
+import React, { createContext, ReactNode } from "react";
 
 import ComicController from "../controllers/ComicController";
 
 import Comic from "../models/Comic";
 
 import _ from "underscore";
-import { trackPromise } from "react-promise-tracker";
 
 interface ComicContextData {
-  comic: Comic | null;
-  mostPopular: Comic[];
-  searchedComics: Comic[];
-  getComicsByName(name: string): Promise<unknown>;
-  getComicById(id: number): Promise<unknown>;
+  getAllComics(page: number): Promise<Comic[]>;
+  getComicsByName(name: string, page: number): Promise<Comic[]>;
+  getComicById(id: number): Promise<Comic>;
 }
 
 interface ComicProviderProps {
@@ -22,37 +19,25 @@ interface ComicProviderProps {
 export const ComicContext = createContext({} as ComicContextData);
 
 export function ComicProvider({ children }: ComicProviderProps) {
-  const [comic, setComic] = useState<Comic | null>(null);
-  const [mostPopular, setMostPopular] = useState<Comic[]>([]);
-
-  const [searchedComics, setSearchedComics] = useState<Comic[]>([]);
-
-  async function getMostPopular() {
-    setMostPopular([]);
-    const mostPop = _.sample(await ComicController.getAllComics(), 16);
-    setMostPopular(mostPop);
+  async function getAllComics(page: number) {
+    const allComics = _.sample(await ComicController.getAllComics(page), 24);
+    return allComics;
   }
 
-  async function getComicsByName(name: string) {
-    setSearchedComics([]);
-    setSearchedComics(await ComicController.getComicsByName(name));
+  async function getComicsByName(name: string, page: number) {
+    const searchedComics = await ComicController.getComicsByName(name, page);
+    return searchedComics;
   }
 
   async function getComicById(id: number) {
-    setComic(await ComicController.getComicById(id));
+    return await ComicController.getComicById(id);
   }
-
-  useEffect(() => {
-    trackPromise(getMostPopular());
-  }, []);
 
   return (
     <ComicContext.Provider
       value={{
-        comic,
-        searchedComics,
+        getAllComics,
         getComicsByName,
-        mostPopular,
         getComicById,
       }}
     >

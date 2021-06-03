@@ -1,18 +1,15 @@
-import React, { createContext, useState, ReactNode, useEffect } from "react";
+import React, { createContext, ReactNode } from "react";
 
 import CharacterController from "../controllers/CharacterController";
 
 import Character from "../models/Character";
 
 import _ from "underscore";
-import { trackPromise } from "react-promise-tracker";
 
 interface CharacterContextData {
-  character: Character | null;
-  randomCharacters: Character[];
-  searchedCharacters: Character[];
-  getCharactersByName(name: string): Promise<unknown>;
-  getCharacterById(id: number): Promise<unknown>;
+  getRandomCharacters(page: number): Promise<Character[]>;
+  getCharactersByName(name: string, page: number): Promise<Character[]>;
+  getCharacterById(id: number): Promise<Character>;
 }
 
 interface CharacterProviderProps {
@@ -22,39 +19,30 @@ interface CharacterProviderProps {
 export const CharacterContext = createContext({} as CharacterContextData);
 
 export function CharacterProvider({ children }: CharacterProviderProps) {
-  const [character, setCharacter] = useState<Character | null>(null);
-  const [randomCharacters, setRandomCharacters] = useState<Character[]>([]);
-
-  const [searchedCharacters, setSearchedCharacters] = useState<Character[]>([]);
-
-  async function getRandomCharacters() {
-    setRandomCharacters([]);
-    const randCharacters = _.sample(
-      await CharacterController.getAllCharacters(),
-      8
+  async function getRandomCharacters(page: number) {
+    const randCharacters = _.sortBy(
+      _.sample(await CharacterController.getAllCharacters(page), 8),
+      "name"
     );
-    setRandomCharacters(_.sortBy(randCharacters, "name"));
+    return randCharacters;
   }
 
-  async function getCharactersByName(name: string) {
-    setSearchedCharacters([]);
-    setSearchedCharacters(await CharacterController.getCharactersByName(name));
+  async function getCharactersByName(name: string, page: number) {
+    const searchedCharacters = await CharacterController.getCharactersByName(
+      name,
+      page
+    );
+    return searchedCharacters;
   }
 
   async function getCharacterById(id: number) {
-    setCharacter(await CharacterController.getCharacterById(id));
+    return await CharacterController.getCharacterById(id);
   }
-
-  useEffect(() => {
-    trackPromise(getRandomCharacters());
-  }, []);
 
   return (
     <CharacterContext.Provider
       value={{
-        character,
-        randomCharacters,
-        searchedCharacters,
+        getRandomCharacters,
         getCharactersByName,
         getCharacterById,
       }}
