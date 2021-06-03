@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { LogOut, Search, User } from "react-feather";
 
@@ -7,10 +7,16 @@ import { Link, useHistory } from "react-router-dom";
 import { Tooltip } from "react-tippy";
 
 import "../../../node_modules/react-tippy/dist/tippy.css";
+import { UserContext } from "../../contexts/UserContext";
 import "./styles.scss";
 
 const Navbar: React.FC = () => {
   const [searchInput, setSearchInput] = useState("");
+  const [image, setImage] = useState(
+    "http://i.annihil.us/u/prod/marvel/i/mg/3/50/537ba56d31087/standard_fantastic.jpg"
+  );
+
+  const { isUserLogged, logOut } = useContext(UserContext);
 
   function handleSearchInput(event: any) {
     const { value } = event.target;
@@ -22,6 +28,18 @@ const Navbar: React.FC = () => {
   function submitSearchForm() {
     history.push(`/search?q=${searchInput}`);
   }
+
+  const storage = localStorage.getItem("user");
+
+  useEffect(() => {
+    console.log("aa");
+    if (storage) {
+      console.log(storage);
+      const storageImage = JSON.parse(storage || "");
+      setImage(storageImage?.image || image);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [image, storage]);
 
   return (
     <nav>
@@ -50,16 +68,23 @@ const Navbar: React.FC = () => {
 
       <div className="user">
         <Tooltip
-          title={true ? "Sign out" : "Sign in"}
+          title={isUserLogged ? "Sign out" : "Sign in"}
           position="bottom"
           arrow={true}
           arrowSize={"small"}
           size={"small"}
           trigger={"mouseenter"}
         >
-          <Link to={true ? "/" : "/signin"}>
+          <Link
+            to={isUserLogged ? "/" : "/signin"}
+            onClick={() => {
+              if (isUserLogged) {
+                logOut();
+              }
+            }}
+          >
             <button>
-              {true ? (
+              {isUserLogged ? (
                 <LogOut color="#d3dce6" size="1rem" />
               ) : (
                 <User color="#d3dce6" size="1rem" />
@@ -68,12 +93,9 @@ const Navbar: React.FC = () => {
           </Link>
         </Tooltip>
 
-        {true ? (
+        {isUserLogged ? (
           <Link to="/" className="user-image">
-            <img
-              src="http://i.annihil.us/u/prod/marvel/i/mg/d/d0/5269657a74350.jpg"
-              alt="Imagem do usuário"
-            />
+            <img src={image} alt="Imagem do usuário" />
           </Link>
         ) : (
           <></>

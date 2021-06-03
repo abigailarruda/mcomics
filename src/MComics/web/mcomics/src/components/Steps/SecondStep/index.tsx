@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 
 import { CharacterContext } from "../../../contexts/CharacterContext";
+import { UserContext } from "../../../contexts/UserContext";
 
 import Character from "../../../models/Character";
 
@@ -19,9 +20,10 @@ import "../styles.scss";
 const SecondStep: React.FC<StepComponentProps> = (
   props: StepComponentProps
 ) => {
+  const { user, setImage } = useContext(UserContext);
   const { getCharactersByName } = useContext(CharacterContext);
 
-  const [selectedItem, setSelectedItem] = useState(0);
+  const [selectedItem, setSelectedItem] = useState("");
   const [searchedCharacters, setSearchedCharacters] = useState<Character[]>([]);
 
   function onValueChange(event: any) {
@@ -78,10 +80,10 @@ const SecondStep: React.FC<StepComponentProps> = (
             return (
               <label key={uuidv4()} className="character-card">
                 <input
-                  id={character.name}
+                  id={character.image}
                   type="radio"
                   name="characters"
-                  value={selectedItem}
+                  value={character.image}
                   onChange={onValueChange}
                 />
 
@@ -91,7 +93,14 @@ const SecondStep: React.FC<StepComponentProps> = (
           })}
       </div>
 
-      <button onClick={props.next}>Next</button>
+      <button
+        onClick={() => {
+          setImage(user?.id || "", selectedItem);
+          props.next();
+        }}
+      >
+        Next
+      </button>
     </div>
   );
 };

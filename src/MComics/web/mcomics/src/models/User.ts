@@ -1,11 +1,14 @@
 export default class User {
+  id: string;
   email: string;
-  password: string;
-  passwordConfirmation: string;
+  image?: string;
 
-  constructor(email: string, password: string, passwordConfirmation: string) {
+  constructor(id: string, email: string) {
+    this.id = id;
     this.email = email;
-    this.password = password;
-    this.passwordConfirmation = passwordConfirmation;
+  }
+
+  setImage(image: string) {
+    this.image = image;
   }
 }
