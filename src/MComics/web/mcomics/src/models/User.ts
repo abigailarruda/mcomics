@@ -3,9 +3,10 @@ export default class User {
   email: string;
   image?: string;
 
-  constructor(id: string, email: string) {
+  constructor(id: string, email: string, image?: string) {
     this.id = id;
     this.email = email;
+    this.image = image;
   }
 
   setImage(image: string) {

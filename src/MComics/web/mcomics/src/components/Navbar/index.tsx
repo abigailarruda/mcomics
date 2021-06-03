@@ -32,9 +32,7 @@ const Navbar: React.FC = () => {
   const storage = localStorage.getItem("user");
 
   useEffect(() => {
-    console.log("aa");
     if (storage) {
-      console.log(storage);
       const storageImage = JSON.parse(storage || "");
       setImage(storageImage?.image || image);
     }

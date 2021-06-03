@@ -48,7 +48,7 @@ function SignIn() {
 
       <ToastContainer
         position="top-left"
-        autoClose={5000}
+        autoClose={60000}
         hideProgressBar
         newestOnTop
         closeOnClick

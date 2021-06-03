@@ -12,7 +12,7 @@ const FirstStep: React.FC<StepComponentProps> = (props: StepComponentProps) => {
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
-  const { isUserLogged, createNewUser } = useContext(UserContext);
+  const { createNewUser } = useContext(UserContext);
 
   function handleEmail(event: any) {
     const { value } = event.target;
@@ -30,10 +30,14 @@ const FirstStep: React.FC<StepComponentProps> = (props: StepComponentProps) => {
   }
 
   async function createUser() {
-    trackPromise(createNewUser(email, password, passwordConfirmation), "user");
+    await trackPromise(
+      createNewUser(email, password, passwordConfirmation),
+      "user"
+    );
     setEmail("");
     setPassword("");
     setPasswordConfirmation("");
+    props.next();
   }
 
   const { promiseInProgress } = usePromiseTracker({ area: "user" });
@@ -71,15 +75,7 @@ const FirstStep: React.FC<StepComponentProps> = (props: StepComponentProps) => {
             onChange={handlePasswordConfirmation}
           />
 
-          <button
-            onClick={async () => {
-              await createUser();
-              props.next();
-            }}
-            disabled={
-              !email && !password && !passwordConfirmation && isUserLogged
-            }
-          >
+          <button className="Teste" onClick={createUser}>
             Next
           </button>
         </>

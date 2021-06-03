@@ -88,16 +88,19 @@ export function UserProvider({ children }: UserProviderProps) {
         );
       }
     } catch (err) {
-      for (let i = 0; i < err.response.data.errors.Mensagens.length; i++) {
-        toast(err.response.data.errors.Mensagens[i], {
-          position: "top-left",
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: false,
-          progress: undefined,
-        });
+      const errors = err.response.data.errors;
+      for (let error in errors) {
+        for (let i = 0; i < error.length; i++) {
+          toast(errors[error][i], {
+            position: "top-left",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: false,
+            progress: undefined,
+          });
+        }
       }
     }
   }
@@ -109,7 +112,13 @@ export function UserProvider({ children }: UserProviderProps) {
       const { status, data } = await userResponse;
 
       if (status === 200) {
-        setUser(new User(data.usuarioToken.id, data.usuarioToken.email));
+        setUser(
+          new User(
+            data.usuarioToken.id,
+            data.usuarioToken.email,
+            data.usuarioToken.url
+          )
+        );
 
         const nowTime = new Date();
 
@@ -122,12 +131,12 @@ export function UserProvider({ children }: UserProviderProps) {
         localStorage.setItem(
           "user",
           JSON.stringify(
-            new User(data.usuarioToken.id, data.usuarioToken.email)
+            new User(
+              data.usuarioToken.id,
+              data.usuarioToken.email,
+              data.usuarioToken.url
+            )
           )
-        );
-        setImage(
-          data.usuarioToken.id,
-          await UserController.getUserImage(data.usuarioToken.id)
         );
       }
 
