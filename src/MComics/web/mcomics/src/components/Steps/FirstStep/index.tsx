@@ -12,7 +12,7 @@ const FirstStep: React.FC<StepComponentProps> = (props: StepComponentProps) => {
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
-  const { createNewUser } = useContext(UserContext);
+  const { signUpStatus, createNewUser } = useContext(UserContext);
 
   function handleEmail(event: any) {
     const { value } = event.target;
@@ -34,10 +34,14 @@ const FirstStep: React.FC<StepComponentProps> = (props: StepComponentProps) => {
       createNewUser(email, password, passwordConfirmation),
       "user"
     );
+
     setEmail("");
     setPassword("");
     setPasswordConfirmation("");
-    props.next();
+
+    if (signUpStatus === 200) {
+      props.jump(2);
+    }
   }
 
   const { promiseInProgress } = usePromiseTracker({ area: "user" });
@@ -75,7 +79,11 @@ const FirstStep: React.FC<StepComponentProps> = (props: StepComponentProps) => {
             onChange={handlePasswordConfirmation}
           />
 
-          <button className="Teste" onClick={createUser}>
+          <button
+            className="Teste"
+            onClick={createUser}
+            disabled={!email || !password || !passwordConfirmation}
+          >
             Next
           </button>
         </>

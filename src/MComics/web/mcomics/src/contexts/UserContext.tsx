@@ -11,6 +11,7 @@ import history from "../routes/history.js";
 interface UserContextData {
   user: User | null;
   isUserLogged: boolean;
+  signUpStatus: number;
   logOut(): void;
   createNewUser(
     email: string,
@@ -30,6 +31,8 @@ export const UserContext = createContext({} as UserContextData);
 export function UserProvider({ children }: UserProviderProps) {
   const [user, setUser] = useState<User | null>(null);
   const [isUserLogged, setIsUserLogged] = useState(false);
+
+  const [signUpStatus, setSignUpStatus] = useState(0);
 
   function handleUserLogged() {
     const activeToken = localStorage.getItem("token");
@@ -70,6 +73,7 @@ export function UserProvider({ children }: UserProviderProps) {
       const { status, data } = await userResponse;
 
       if (status === 200) {
+        setSignUpStatus(200);
         setUser(new User(data.usuarioToken.id, data.usuarioToken.email));
 
         const nowTime = new Date();
@@ -112,6 +116,7 @@ export function UserProvider({ children }: UserProviderProps) {
       const { status, data } = await userResponse;
 
       if (status === 200) {
+        setSignUpStatus(200);
         setUser(
           new User(
             data.usuarioToken.id,
@@ -190,6 +195,7 @@ export function UserProvider({ children }: UserProviderProps) {
     <UserContext.Provider
       value={{
         user,
+        signUpStatus,
         isUserLogged,
         setImage,
         createNewUser,
